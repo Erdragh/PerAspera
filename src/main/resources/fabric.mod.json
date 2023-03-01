@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "jet_suit_additions",
+  "version": "${version}",
+  "name": "Jet Suit Additions",
+  "description": "Custom Additions to the Jet Suit from Ad Astra.",
+  "authors": [
+    "Erdragh"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/jet_suit_additions/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.github.erdragh.jet_suit_additions.client.JetSuitAdditionsClient"
+    ],
+    "main": [
+      "com.github.erdragh.jet_suit_additions.JetSuitAdditions"
+    ]
+  },
+  "mixins": [
+    "jet_suit_additions.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.17",
+    "fabric": "*",
+    "minecraft": "1.18.2"
+  }
+}
