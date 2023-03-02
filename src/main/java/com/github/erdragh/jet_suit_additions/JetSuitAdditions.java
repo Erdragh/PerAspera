@@ -7,8 +7,11 @@ public class JetSuitAdditions implements ModInitializer {
 
     public static final String MODID = "jet_suit_additions";
 
+
     @Override
     public void onInitialize() {
         C2SPackets.register();
     }
+
+
 }

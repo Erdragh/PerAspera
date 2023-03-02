@@ -18,15 +18,19 @@ public class JetSuitAdditionsClient implements ClientModInitializer {
 
     public static final String KEY_CATEGORY = JetSuitAdditions.MODID + ".key_category";
 
-    public static KeyBinding jetSuitToggle;
+    public static KeyBinding jetSuitToggle, jetSuitHoverToggle;
 
     @Override
     public void onInitializeClient() {
         jetSuitToggle = KeyBindingHelper.registerKeyBinding(new KeyBinding(JetSuitAdditions.MODID + ".key.toggle_jet_suit", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_COMMA, KEY_CATEGORY));
+        jetSuitHoverToggle = KeyBindingHelper.registerKeyBinding(new KeyBinding(JetSuitAdditions.MODID + ".key.toggle_jet_suit_hover", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_PERIOD, KEY_CATEGORY));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (jetSuitToggle.wasPressed()) {
                 ClientPlayNetworking.send(C2SPackets.TOGGLE_ON, PacketByteBufs.create());
+            }
+            while (jetSuitHoverToggle.wasPressed()) {
+                ClientPlayNetworking.send(C2SPackets.TOGGLE_HOVER, PacketByteBufs.create());
             }
         });
     }
