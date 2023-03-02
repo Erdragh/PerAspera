@@ -1,14 +1,16 @@
 package com.github.erdragh.jet_suit_additions.client;
 
 import com.github.erdragh.jet_suit_additions.JetSuitAdditions;
+import com.github.erdragh.jet_suit_additions.networking.C2SPackets;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 
 @Environment(EnvType.CLIENT)
@@ -24,7 +26,7 @@ public class JetSuitAdditionsClient implements ClientModInitializer {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (jetSuitToggle.wasPressed()) {
-                client.player.sendMessage(Text.of("FUCK"), false);
+                ClientPlayNetworking.send(C2SPackets.TOGGLE_ON, PacketByteBufs.create());
             }
         });
     }
