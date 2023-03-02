@@ -1,0 +1,8 @@
+{
+  "jet_suit_additions.msg.jet_suit_toggle": "Jet Suit turned ",
+  "jet_suit_additions.msg.jet_suit_on": "on",
+  "jet_suit_additions.msg.jet_suit_off": "off",
+
+  "jet_suit_additions.key_category": "Jet Suit Additions",
+  "jet_suit_additions.key.toggle_jet_suit": "Turn the Jet Suit on/off"
+}

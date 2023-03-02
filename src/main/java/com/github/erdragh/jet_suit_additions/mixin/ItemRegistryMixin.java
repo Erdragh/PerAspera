@@ -37,7 +37,6 @@ public class ItemRegistryMixin {
             method = "<clinit>"
     )
     private static JetSuit jetSuitHelmet(ArmorMaterial material, EquipmentSlot slot, Item.Settings settings) {
-        System.out.println("FUCK");
         return new ImprovedJetSuit(material, slot, settings);
     }
 
@@ -59,7 +58,6 @@ public class ItemRegistryMixin {
             method = "<clinit>"
     )
     private static JetSuit jetSuit(ArmorMaterial material, EquipmentSlot slot, Item.Settings settings) {
-        System.out.println("FUCK2");
         return new ImprovedJetSuit(material, slot, settings);
     }
 
@@ -81,7 +79,6 @@ public class ItemRegistryMixin {
             method = "<clinit>"
     )
     private static JetSuit jetSuitPants(ArmorMaterial material, EquipmentSlot slot, Item.Settings settings) {
-        System.out.println("FUCK3");
         return new ImprovedJetSuit(material, slot, settings);
     }
 
@@ -103,7 +100,6 @@ public class ItemRegistryMixin {
             method = "<clinit>"
     )
     private static JetSuit jetSuitBoots(ArmorMaterial material, EquipmentSlot slot, Item.Settings settings) {
-        System.out.println("FUCK4");
         return new ImprovedJetSuit(material, slot, settings);
     }
 }

@@ -13,7 +13,7 @@ public class ImprovedJetSuit extends JetSuit {
 
     @Override
     public void fly(PlayerEntity player, ItemStack stack) {
-        System.out.println("Fuck Yeah");
+        if (!stack.getOrCreateNbt().getBoolean("toggle_on")) return;
         super.fly(player, stack);
     }
 }
