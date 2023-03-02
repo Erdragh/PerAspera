@@ -12,7 +12,7 @@
     "issues": "https://github.com/Erdragh/JetSuitAdditions/issues"
   },
   "license": "MIT",
-  "icon": "assets/jet_suit_additions/icon.png",
+  "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
