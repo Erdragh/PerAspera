@@ -1,18 +1,12 @@
 package com.github.erdragh.jet_suit_additions.mixin;
 
 import com.github.alexnijjar.ad_astra.items.armour.JetSuit;
-import com.github.alexnijjar.ad_astra.registry.ModArmour;
-import com.github.alexnijjar.ad_astra.registry.ModItemGroups;
 import com.github.alexnijjar.ad_astra.registry.ModItems;
 import com.github.erdragh.jet_suit_additions.items.armour.ImprovedJetSuit;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.Slice;

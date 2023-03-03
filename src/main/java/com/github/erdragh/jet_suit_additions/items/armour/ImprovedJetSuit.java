@@ -7,6 +7,7 @@ import com.github.alexnijjar.ad_astra.util.ModKeyBindings;
 import com.github.erdragh.jet_suit_additions.JetSuitAdditions;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
@@ -93,4 +94,17 @@ public class ImprovedJetSuit extends JetSuit {
             player.setVelocity(player.getVelocity().getX(), speed, player.getVelocity().getZ());
         }
     }
+
+    public static void spawnParticles(World world, LivingEntity entity, ItemStack chest, double pitch, double yOffset, double zOffset) {
+        double yaw = entity.bodyYaw;
+        double xRotator = Math.cos(yaw * Math.PI / 180.0) * zOffset;
+        double zRotator = Math.sin(yaw * Math.PI / 180.0) * zOffset;
+        double xRotator1 = Math.cos((yaw - 90) * Math.PI / 180.0) * pitch;
+        double zRotator1 = Math.sin((yaw - 90) * Math.PI / 180.0) * pitch;
+
+        var particleType = JetSuitParticle.fromIdentifier(chest.getOrCreateNbt().getString("particle_type")).get();
+
+        world.addParticle(particleType, true, entity.getX() + xRotator + xRotator1, entity.getY() + yOffset, entity.getZ() + zRotator1 + zRotator, 0.0, 0.0, 0.0);
+    }
+
 }
