@@ -36,6 +36,20 @@ public class ImprovedJetSuit extends JetSuit {
     }
 
     @Override
+    public void fallFly(PlayerEntity player, ItemStack stack) {
+        if (!ModKeyBindings.jumpKeyDown(player)) {
+            if (player.isOnGround()) {
+                stack.getOrCreateNbt().putBoolean("spawn_particles", false);
+                return;
+            } else {
+                hover(player, stack);
+                return;
+            }
+        }
+        super.fallFly(player, stack);
+    }
+
+    @Override
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
         if (stack.isOf(ModItems.JET_SUIT)) {
