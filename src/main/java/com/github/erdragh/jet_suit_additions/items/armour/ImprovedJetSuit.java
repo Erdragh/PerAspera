@@ -107,7 +107,7 @@ public class ImprovedJetSuit extends JetSuit {
         double xRotator1 = Math.cos((yaw - 90) * Math.PI / 180.0) * pitch;
         double zRotator1 = Math.sin((yaw - 90) * Math.PI / 180.0) * pitch;
 
-        var particleType = JetSuitParticles.fromIdentifier("colored_exhaust"/*chest.getOrCreateNbt().getString("particle_type")*/).get();
+        var particleType = JetSuitParticles.fromIdentifier(chest.getOrCreateNbt().getString("particle_type")).get();
 
         var particleVelocity = new Vec3d(0,0,0);
         if (chest.getOrCreateNbt().getString("particle_type").equals("colored_exhaust")) {

@@ -31,7 +31,7 @@ public enum JetSuitParticles {
         if (identifier.equals(BUBBLE.identifier)) return BUBBLE;
         if (identifier.equals(END_ROD.identifier)) return END_ROD;
         if (identifier.equals(PORTAL.identifier)) return PORTAL;
-        if (identifier.equals(COLORED_EXHAUST.identifier)) return COLORED_EXHAUST;
+        // if (identifier.equals(COLORED_EXHAUST.identifier)) return COLORED_EXHAUST;
         return SOUL_FIRE_FLAME;
     }
 }
