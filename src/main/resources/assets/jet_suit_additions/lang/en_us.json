@@ -6,5 +6,12 @@
 
   "jet_suit_additions.key_category": "Jet Suit Additions",
   "jet_suit_additions.key.toggle_jet_suit": "Turn the Jet Suit on/off",
-  "jet_suit_additions.key.toggle_jet_suit_hover": "Turn Hover Mode on/off"
+  "jet_suit_additions.key.toggle_jet_suit_hover": "Turn Hover Mode on/off",
+
+  "item.jet_suit_additions.jet_suit_flash_card": "Jet Suit Flash Card",
+
+  "jet_suit_additions.gui.jet_suit_customization.title": "Choose the particle style for your Jet Suit",
+  "jet_suit_additions.gui.jet_suit_customization.default": "Default (Soul Fire)",
+  "jet_suit_additions.gui.jet_suit_customization.end_rod": "End Rod",
+  "jet_suit_additions.gui.jet_suit_customization.bubble": "Bubbles"
 }
