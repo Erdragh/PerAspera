@@ -41,9 +41,6 @@ public class C2SPackets {
             if (chestStack.getItem() instanceof ImprovedJetSuit) {
                 var particleType = buf.readEnumConstant(JetSuitParticles.class);
                 chestStack.getOrCreateNbt().putString("particle_type", particleType.getIdentifier());
-                Text text = new TranslatableText(JetSuitAdditions.MODID + ".msg.jet_suit_toggle_hover").append(new TranslatableText(JetSuitAdditions.MODID + ".msg.jet_suit_" + (chestStack.getOrCreateNbt().getBoolean("toggle_hover") ? "on" : "off")));
-
-                player.sendMessage(text, true);
             }
         });
     }
