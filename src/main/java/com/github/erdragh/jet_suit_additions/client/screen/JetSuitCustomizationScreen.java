@@ -39,23 +39,27 @@ public class JetSuitCustomizationScreen extends Screen {
         super.init();
         this.buttons.add(this.addSelectableChild(new ButtonWidget((this.width - WINDOW_WIDTH) / 2, (this.height - WINDOW_HEIGHT) / 2, WINDOW_WIDTH, 20, new TranslatableText(JetSuitAdditions.MODID + ".gui.jet_suit_customization.default"), button -> {
             ClientPlayNetworking.send(C2SPackets.CHANGE_JET_PARTICLE, PacketByteBufs.create().writeEnumConstant(JetSuitParticles.SOUL_FIRE_FLAME));
+            this.close();
         })));
-        this.buttons.add(this.addSelectableChild(new ButtonWidget((this.width - WINDOW_WIDTH) / 2, (this.height - WINDOW_HEIGHT) / 2 + 20, WINDOW_WIDTH, 20, new TranslatableText(JetSuitAdditions.MODID + ".gui.jet_suit_customization.end_rod"), button -> {
+        this.buttons.add(this.addSelectableChild(new ButtonWidget((this.width - WINDOW_WIDTH) / 2, (this.height - WINDOW_HEIGHT) / 2 + 30, WINDOW_WIDTH, 20, new TranslatableText(JetSuitAdditions.MODID + ".gui.jet_suit_customization.end_rod"), button -> {
             ClientPlayNetworking.send(C2SPackets.CHANGE_JET_PARTICLE, PacketByteBufs.create().writeEnumConstant(JetSuitParticles.END_ROD));
+            this.close();
         })));
-        this.buttons.add(this.addSelectableChild(new ButtonWidget((this.width - WINDOW_WIDTH) / 2, (this.height - WINDOW_HEIGHT) / 2 + 40, WINDOW_WIDTH, 20, new TranslatableText(JetSuitAdditions.MODID + ".gui.jet_suit_customization.bubble"), button -> {
+        this.buttons.add(this.addSelectableChild(new ButtonWidget((this.width - WINDOW_WIDTH) / 2, (this.height - WINDOW_HEIGHT) / 2 + 60, WINDOW_WIDTH, 20, new TranslatableText(JetSuitAdditions.MODID + ".gui.jet_suit_customization.bubble"), button -> {
             ClientPlayNetworking.send(C2SPackets.CHANGE_JET_PARTICLE, PacketByteBufs.create().writeEnumConstant(JetSuitParticles.BUBBLE));
+            this.close();
         })));
     }
 
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         this.renderBackground(matrices);
-        this.setFocused(null);
-        /* RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
-        RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
-        this.drawTexture(matrices, (this.width - WINDOW_WIDTH) / 2, (this.height - WINDOW_HEIGHT) / 2, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);*/
+        this.setFocused(buttons.get(0));
+
+        var displayedText = new TranslatableText(JetSuitAdditions.MODID + ".gui.jet_suit_customization.title");
+        var textWidth = this.textRenderer.getWidth(displayedText);
+        this.textRenderer.draw(matrices, displayedText, (this.width - textWidth) / 2, (this.height - WINDOW_HEIGHT) / 2 - 20, 0xffffff);
+
         for (var button : this.buttons) {
             button.render(matrices, mouseX, mouseY, delta);
         }
