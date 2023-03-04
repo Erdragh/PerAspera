@@ -38,5 +38,7 @@ public class JetSuitAdditionsClient implements ClientModInitializer {
         });
 
         ParticleFactoryRegistry.getInstance().register(JetSuitAdditions.COLORED_JET_EXHAUST, ColoredJetExhaustParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(JetSuitAdditions.END_ROD_JET_EXHAUST, FlameParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(JetSuitAdditions.BUBBLES_JET_EXHAUST, FlameParticle.Factory::new);
     }
 }
