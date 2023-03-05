@@ -1,8 +1,9 @@
 package com.github.erdragh.jet_suit_additions.particle;
 
 import com.github.erdragh.jet_suit_additions.JetSuitAdditions;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.ParticleTypes;
 
 public enum JetSuitParticles {
 
@@ -12,14 +13,14 @@ public enum JetSuitParticles {
     COLORED_EXHAUST("colored_exhaust", JetSuitAdditions.COLORED_JET_EXHAUST);
 
 
-    private final ParticleEffect particleEffect;
+    private final ParticleOptions particleEffect;
     private final String identifier;
-    JetSuitParticles(String identifier, ParticleEffect particleEffect) {
+    JetSuitParticles(String identifier, ParticleOptions particleEffect) {
         this.identifier = identifier;
         this.particleEffect = particleEffect;
     }
 
-    public ParticleEffect get() {
+    public ParticleOptions get() {
         return this.particleEffect;
     }
     public String getIdentifier() {
