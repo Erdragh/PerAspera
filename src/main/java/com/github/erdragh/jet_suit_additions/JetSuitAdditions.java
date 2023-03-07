@@ -2,16 +2,21 @@ package com.github.erdragh.jet_suit_additions;
 
 import com.github.erdragh.jet_suit_additions.items.JetSuitFlashCard;
 import com.github.erdragh.jet_suit_additions.networking.C2SPackets;
+import com.mojang.logging.LogUtils;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JetSuitAdditions implements ModInitializer {
 
     public static final String MODID = "jet_suit_additions";
+
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public static final SimpleParticleType COLORED_JET_EXHAUST = FabricParticleTypes.simple();
     public static final SimpleParticleType END_ROD_JET_EXHAUST = FabricParticleTypes.simple();
