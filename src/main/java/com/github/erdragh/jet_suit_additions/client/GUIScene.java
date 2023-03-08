@@ -16,6 +16,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
@@ -40,16 +41,23 @@ public class GUIScene {
     private int totalTime;
     private int currentTime;
 
-    public GUIScene(Level world) {
+    private Player player;
+
+    public GUIScene(Level world, Player player) {
         this.world = new GUIWorld(world);
         this.camera = new SceneCamera();
         this.transform = new SceneTransform();
 
+        this.player = player;
+
         this.renderViewEntity = world != null ? new ArmorStand(world, 0, 0, 0) : null;
+
+        // this.world.anchor = player.getOnPos();
+
+        this.world.addFreshEntity(new ArmorStand(world, 0, 0, 0));
     }
 
     public void renderScene(SuperRenderTypeBuffer buffer, PoseStack ms, float pt) {
-        ForcedDiffuseState.pushCalculator(DiffuseLightCalculator.NETHER);
         ms.pushPose();
 
         Minecraft mc = Minecraft.getInstance();
@@ -57,13 +65,12 @@ public class GUIScene {
         mc.cameraEntity = this.renderViewEntity;
         camera.set(90, 180);
 
-        world.renderEntities(ms, buffer, camera, pt);
+        world.renderEntities(buffer);
         world.renderParticles(ms, buffer, camera, pt);
 
         mc.cameraEntity = prevRVE;
 
         ms.popPose();
-        ForcedDiffuseState.popCalculator();
     }
 
     public void tick() {

@@ -2,7 +2,11 @@ package com.github.erdragh.jet_suit_additions.client;
 
 import com.github.erdragh.jet_suit_additions.JetSuitAdditions;
 import com.google.common.base.Suppliers;
+import com.mojang.blaze3d.platform.Lighting;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Quaternion;
+import com.mojang.math.Vector3f;
 import io.github.fabricators_of_create.porting_lib.mixin.client.accessor.ParticleEngineAccessor;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.client.Camera;
@@ -431,11 +435,7 @@ public class GUIWorld extends Level {
         throw new IllegalStateException("Cannot use IServerWorld#getWorld in a client environment");
     }
 
-    public void renderEntities(PoseStack ms, SuperRenderTypeBuffer buffer, Camera camera, float pt) {
-        Vec3 Vector3d = camera.getPosition();
-        double d0 = Vector3d.x();
-        double d1 = Vector3d.y();
-        double d2 = Vector3d.z();
+    public void renderEntities(MultiBufferSource bufferSource) {
 
         for (Entity entity : entities) {
             if (entity.tickCount == 0) {
@@ -443,26 +443,51 @@ public class GUIWorld extends Level {
                 entity.yOld = entity.getY();
                 entity.zOld = entity.getZ();
             }
-            renderEntity(entity, d0, d1, d2, pt, ms, buffer);
+            renderEntity(entity, bufferSource);
         }
-
-        buffer.draw(RenderType.entitySolid(InventoryMenu.BLOCK_ATLAS));
-        buffer.draw(RenderType.entityCutout(InventoryMenu.BLOCK_ATLAS));
-        buffer.draw(RenderType.entityCutoutNoCull(InventoryMenu.BLOCK_ATLAS));
-        buffer.draw(RenderType.entitySmoothCutout(InventoryMenu.BLOCK_ATLAS));
     }
 
-    private void renderEntity(Entity entity, double x, double y, double z, float pt, PoseStack ms,
-                              MultiBufferSource buffer) {
-        double d0 = Mth.lerp((double) pt, entity.xOld, entity.getX());
-        double d1 = Mth.lerp((double) pt, entity.yOld, entity.getY());
-        double d2 = Mth.lerp((double) pt, entity.zOld, entity.getZ());
-        float f = Mth.lerp(pt, entity.yRotO, entity.getYRot());
+    private void renderEntity(Entity entity, MultiBufferSource bufferSource) {
+        /*System.out.println(entity);
+
+        RenderSystem.applyModelViewMatrix();
+
         EntityRenderDispatcher renderManager = Minecraft.getInstance()
                 .getEntityRenderDispatcher();
-        int light = renderManager.getRenderer(entity)
-                .getPackedLightCoords(entity, pt);
-        renderManager.render(entity, d0 - x, d1 - y, d2 - z, f, pt, ms, buffer, light);
+
+        MultiBufferSource.BufferSource bufferSource = Minecraft.getInstance().renderBuffers().bufferSource();
+
+        renderManager.render(entity, x, y, z, 0, pt, ms, bufferSource, 15728880);
+
+        bufferSource.endBatch();
+
+        RenderSystem.applyModelViewMatrix();
+
+        Lighting.setupFor3DItems();*/
+
+        PoseStack poseStack = RenderSystem.getModelViewStack();
+        poseStack.pushPose();
+        poseStack.scale(1.0F, 1.0F, -1.0F);
+        RenderSystem.applyModelViewMatrix();
+        PoseStack poseStack2 = new PoseStack();
+        poseStack2.translate(0.0, 0.0, 1000.0);
+        Quaternion quaternion = Vector3f.ZP.rotationDegrees(180.0F);
+        Quaternion quaternion2 = Vector3f.XP.rotationDegrees(20.0F);
+        quaternion.mul(quaternion2);
+        Lighting.setupForEntityInInventory();
+        EntityRenderDispatcher entityRenderDispatcher = Minecraft.getInstance().getEntityRenderDispatcher();
+        quaternion2.conj();
+        entityRenderDispatcher.overrideCameraOrientation(quaternion2);
+        entityRenderDispatcher.setRenderShadow(false);
+        // MultiBufferSource.BufferSource bufferSource = Minecraft.getInstance().renderBuffers().bufferSource();
+        RenderSystem.runAsFancy(() -> {
+            entityRenderDispatcher.render(entity, 0.0, 0.0, 0.0, 0.0F, 1.0F, poseStack2, bufferSource, 15728880);
+        });
+        // bufferSource.endBatch();
+        entityRenderDispatcher.setRenderShadow(true);
+        poseStack.popPose();
+        RenderSystem.applyModelViewMatrix();
+        Lighting.setupFor3DItems();
     }
 
     public void renderParticles(PoseStack ms, MultiBufferSource buffer, Camera ari, float pt) {

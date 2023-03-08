@@ -56,7 +56,7 @@ public class JetSuitCustomizationScreen extends Screen {
 
         this.player = player;
 
-        scene = new GUIScene(player.getLevel());
+        scene = new GUIScene(player.getLevel(), player);
     }
 
     @Override
