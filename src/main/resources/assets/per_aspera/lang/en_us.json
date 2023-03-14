@@ -1,0 +1,17 @@
+{
+  "per_aspera.msg.jet_suit_toggle": "Jet Suit turned ",
+  "per_aspera.msg.jet_suit_toggle_hover": "Jet Suit Hover turned ",
+  "per_aspera.msg.jet_suit_on": "on",
+  "per_aspera.msg.jet_suit_off": "off",
+
+  "per_aspera.key_category": "Jet Suit Additions",
+  "per_aspera.key.toggle_jet_suit": "Turn the Jet Suit on/off",
+  "per_aspera.key.toggle_jet_suit_hover": "Turn Hover Mode on/off",
+
+  "item.per_aspera.jet_suit_flash_card": "Jet Suit Flash Card",
+
+  "per_aspera.gui.jet_suit_customization.title": "Choose the particle style for your Jet Suit",
+  "per_aspera.gui.jet_suit_customization.default": "Default (Soul Fire)",
+  "per_aspera.gui.jet_suit_customization.end_rod": "End Rod",
+  "per_aspera.gui.jet_suit_customization.bubble": "Bubbles"
+}

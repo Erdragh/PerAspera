@@ -1,4 +1,4 @@
-package com.github.erdragh.jet_suit_additions.particle;
+package com.github.erdragh.per_aspera.particle;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

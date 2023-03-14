@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.github.erdragh.jet_suit_additions.mixin",
+  "package": "com.github.erdragh.per_aspera.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "ItemRegistryMixin",

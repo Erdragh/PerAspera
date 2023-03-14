@@ -1,18 +1,17 @@
-package com.github.erdragh.jet_suit_additions.particle;
+package com.github.erdragh.per_aspera.particle;
 
-import com.github.erdragh.jet_suit_additions.JetSuitAdditions;
+import com.github.erdragh.per_aspera.PerAspera;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
 
 import java.util.Arrays;
 
 public enum JetSuitParticles {
 
-    BUBBLE("bubble", JetSuitAdditions.BUBBLES_JET_EXHAUST),
-    END_ROD("end_rod", JetSuitAdditions.END_ROD_JET_EXHAUST),
+    BUBBLE("bubble", PerAspera.BUBBLES_JET_EXHAUST),
+    END_ROD("end_rod", PerAspera.END_ROD_JET_EXHAUST),
     SOUL_FIRE_FLAME("soul_fire_flame", ParticleTypes.SOUL_FIRE_FLAME),
-    COLORED_EXHAUST("colored_exhaust", JetSuitAdditions.COLORED_JET_EXHAUST);
+    COLORED_EXHAUST("colored_exhaust", PerAspera.COLORED_JET_EXHAUST);
 
     public static final JetSuitParticles[] PARTICLES = new JetSuitParticles[]{
             BUBBLE,

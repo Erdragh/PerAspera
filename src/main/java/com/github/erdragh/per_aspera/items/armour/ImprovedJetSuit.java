@@ -1,11 +1,11 @@
-package com.github.erdragh.jet_suit_additions.items.armour;
+package com.github.erdragh.per_aspera.items.armour;
 
 import com.github.alexnijjar.ad_astra.AdAstra;
 import com.github.alexnijjar.ad_astra.items.armour.JetSuit;
 import com.github.alexnijjar.ad_astra.registry.ModItems;
 import com.github.alexnijjar.ad_astra.util.ModKeyBindings;
-import com.github.erdragh.jet_suit_additions.JetSuitAdditions;
-import com.github.erdragh.jet_suit_additions.particle.JetSuitParticles;
+import com.github.erdragh.per_aspera.PerAspera;
+import com.github.erdragh.per_aspera.particle.JetSuitParticles;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -59,8 +59,8 @@ public class ImprovedJetSuit extends JetSuit {
         if (stack.is(ModItems.JET_SUIT)) {
             boolean turnedOn = stack.getOrCreateTag().getBoolean("toggle_on");
             boolean hoverOn = stack.getOrCreateTag().getBoolean("toggle_hover");
-            Component turnedOnText = new TranslatableComponent(JetSuitAdditions.MODID + ".msg.jet_suit_toggle").append(new TranslatableComponent(JetSuitAdditions.MODID + ".msg.jet_suit_" + (turnedOn ? "on" : "off")).setStyle(Style.EMPTY.withBold(true).withColor(turnedOn ? ChatFormatting.GREEN : ChatFormatting.RED)));
-            Component hoverOnText = new TranslatableComponent(JetSuitAdditions.MODID + ".msg.jet_suit_toggle_hover").append(new TranslatableComponent(JetSuitAdditions.MODID + ".msg.jet_suit_" + (hoverOn ? "on" : "off")).setStyle(Style.EMPTY.withBold(true).withColor(hoverOn ? ChatFormatting.GREEN : ChatFormatting.RED)));
+            Component turnedOnText = new TranslatableComponent(PerAspera.MODID + ".msg.jet_suit_toggle").append(new TranslatableComponent(PerAspera.MODID + ".msg.jet_suit_" + (turnedOn ? "on" : "off")).setStyle(Style.EMPTY.withBold(true).withColor(turnedOn ? ChatFormatting.GREEN : ChatFormatting.RED)));
+            Component hoverOnText = new TranslatableComponent(PerAspera.MODID + ".msg.jet_suit_toggle_hover").append(new TranslatableComponent(PerAspera.MODID + ".msg.jet_suit_" + (hoverOn ? "on" : "off")).setStyle(Style.EMPTY.withBold(true).withColor(hoverOn ? ChatFormatting.GREEN : ChatFormatting.RED)));
             tooltip.add(turnedOnText);
             tooltip.add(hoverOnText);
         }

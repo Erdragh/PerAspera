@@ -1,18 +1,14 @@
-package com.github.erdragh.jet_suit_additions.client.screen;
+package com.github.erdragh.per_aspera.client.screen;
 
-import com.github.erdragh.jet_suit_additions.JetSuitAdditions;
-import com.github.erdragh.jet_suit_additions.particle.JetSuitParticles;
-import com.github.erdragh.jet_suit_additions.networking.C2SPackets;
+import com.github.erdragh.per_aspera.PerAspera;
+import com.github.erdragh.per_aspera.particle.JetSuitParticles;
+import com.github.erdragh.per_aspera.networking.C2SPackets;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Matrix4f;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.screens.OptionsScreen;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.controls.ControlsScreen;
-import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
@@ -34,7 +30,7 @@ public class JetSuitCustomizationScreen extends Screen {
 
 
     public JetSuitCustomizationScreen(Player player, ItemStack stack, InteractionHand hand) {
-        super(new TranslatableComponent(JetSuitAdditions.MODID + ".gui.jet_suit_customization"));
+        super(new TranslatableComponent(PerAspera.MODID + ".gui.jet_suit_customization"));
         this.chestItem = stack;
         this.hand = hand;
 
@@ -47,7 +43,7 @@ public class JetSuitCustomizationScreen extends Screen {
         buttons = new ArrayList<>();
         for (int i = 0; i < JetSuitParticles.PARTICLES.length; i++) {
             JetSuitParticles p = JetSuitParticles.PARTICLES[i];
-            this.buttons.add(this.addWidget(new Button((this.width - WINDOW_WIDTH) / 2, (this.height - WINDOW_HEIGHT) / 2 + i * 30, WINDOW_WIDTH, 20, new TranslatableComponent(JetSuitAdditions.MODID + ".gui.jet_suit_customization." + p.getIdentifier()), button -> {
+            this.buttons.add(this.addWidget(new Button((this.width - WINDOW_WIDTH) / 2, (this.height - WINDOW_HEIGHT) / 2 + i * 30, WINDOW_WIDTH, 20, new TranslatableComponent(PerAspera.MODID + ".gui.jet_suit_customization." + p.getIdentifier()), button -> {
                 ClientPlayNetworking.send(C2SPackets.CHANGE_JET_PARTICLE, PacketByteBufs.create().writeEnum(p));
                 this.onClose();
             })));
@@ -61,7 +57,7 @@ public class JetSuitCustomizationScreen extends Screen {
 
         RenderSystem.enableBlend();
 
-        var displayedText = new TranslatableComponent(JetSuitAdditions.MODID + ".gui.jet_suit_customization.title");
+        var displayedText = new TranslatableComponent(PerAspera.MODID + ".gui.jet_suit_customization.title");
         var textWidth = this.font.width(displayedText);
         this.font.draw(matrices, displayedText, (this.width - textWidth) / 2, (this.height - WINDOW_HEIGHT) / 2 - 20, 0xffffff);
 

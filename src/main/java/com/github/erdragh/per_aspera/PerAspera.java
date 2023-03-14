@@ -1,7 +1,7 @@
-package com.github.erdragh.jet_suit_additions;
+package com.github.erdragh.per_aspera;
 
-import com.github.erdragh.jet_suit_additions.items.JetSuitFlashCard;
-import com.github.erdragh.jet_suit_additions.networking.C2SPackets;
+import com.github.erdragh.per_aspera.items.JetSuitFlashCard;
+import com.github.erdragh.per_aspera.networking.C2SPackets;
 import com.mojang.logging.LogUtils;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
@@ -10,11 +10,10 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class JetSuitAdditions implements ModInitializer {
+public class PerAspera implements ModInitializer {
 
-    public static final String MODID = "jet_suit_additions";
+    public static final String MODID = "per_aspera";
 
     public static final Logger LOGGER = LogUtils.getLogger();
 

@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "jet_suit_additions:item/jet_suit_flash_card"
-  }
-}

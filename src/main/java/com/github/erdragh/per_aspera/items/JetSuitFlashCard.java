@@ -1,7 +1,7 @@
-package com.github.erdragh.jet_suit_additions.items;
+package com.github.erdragh.per_aspera.items;
 
-import com.github.erdragh.jet_suit_additions.client.screen.JetSuitCustomizationScreen;
-import com.github.erdragh.jet_suit_additions.items.armour.ImprovedJetSuit;
+import com.github.erdragh.per_aspera.client.screen.JetSuitCustomizationScreen;
+import com.github.erdragh.per_aspera.items.armour.ImprovedJetSuit;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.InteractionHand;

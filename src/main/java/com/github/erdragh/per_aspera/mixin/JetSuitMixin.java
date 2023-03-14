@@ -1,7 +1,7 @@
-package com.github.erdragh.jet_suit_additions.mixin;
+package com.github.erdragh.per_aspera.mixin;
 
 import com.github.alexnijjar.ad_astra.items.armour.JetSuit;
-import com.github.erdragh.jet_suit_additions.items.armour.ImprovedJetSuit;
+import com.github.erdragh.per_aspera.items.armour.ImprovedJetSuit;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.EquipmentSlot;
