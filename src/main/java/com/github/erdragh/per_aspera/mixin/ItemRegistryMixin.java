@@ -1,18 +1,12 @@
-package com.github.erdragh.jet_suit_additions.mixin;
+package com.github.erdragh.per_aspera.mixin;
 
 import com.github.alexnijjar.ad_astra.items.armour.JetSuit;
-import com.github.alexnijjar.ad_astra.registry.ModArmour;
-import com.github.alexnijjar.ad_astra.registry.ModItemGroups;
 import com.github.alexnijjar.ad_astra.registry.ModItems;
-import com.github.erdragh.jet_suit_additions.items.armour.ImprovedJetSuit;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.Item;
-import org.spongepowered.asm.mixin.Final;
+import com.github.erdragh.per_aspera.items.armour.ImprovedJetSuit;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.Slice;
@@ -36,7 +30,7 @@ public class ItemRegistryMixin {
             ),
             method = "<clinit>"
     )
-    private static JetSuit jetSuitHelmet(ArmorMaterial material, EquipmentSlot slot, Item.Settings settings) {
+    private static JetSuit jetSuitHelmet(ArmorMaterial material, EquipmentSlot slot, Item.Properties settings) {
         return new ImprovedJetSuit(material, slot, settings);
     }
 
@@ -57,7 +51,7 @@ public class ItemRegistryMixin {
             ),
             method = "<clinit>"
     )
-    private static JetSuit jetSuit(ArmorMaterial material, EquipmentSlot slot, Item.Settings settings) {
+    private static JetSuit jetSuit(ArmorMaterial material, EquipmentSlot slot, Item.Properties settings) {
         return new ImprovedJetSuit(material, slot, settings);
     }
 
@@ -78,7 +72,7 @@ public class ItemRegistryMixin {
             ),
             method = "<clinit>"
     )
-    private static JetSuit jetSuitPants(ArmorMaterial material, EquipmentSlot slot, Item.Settings settings) {
+    private static JetSuit jetSuitPants(ArmorMaterial material, EquipmentSlot slot, Item.Properties settings) {
         return new ImprovedJetSuit(material, slot, settings);
     }
 
@@ -99,7 +93,7 @@ public class ItemRegistryMixin {
             ),
             method = "<clinit>"
     )
-    private static JetSuit jetSuitBoots(ArmorMaterial material, EquipmentSlot slot, Item.Settings settings) {
+    private static JetSuit jetSuitBoots(ArmorMaterial material, EquipmentSlot slot, Item.Properties settings) {
         return new ImprovedJetSuit(material, slot, settings);
     }
 }

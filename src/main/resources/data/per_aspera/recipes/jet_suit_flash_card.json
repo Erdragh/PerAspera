@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RCR",
+    "SSS",
+    "RIR"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "C": {
+      "item": "ad_astra:calorite_nugget"
+    },
+    "S": {
+      "tag": "c:steel_ingots"
+    },
+    "I": {
+      "tag": "c:iron_plates"
+    }
+  },
+  "result": {
+    "item": "per_aspera:jet_suit_flash_card",
+    "count": 1
+  }
+}
