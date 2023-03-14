@@ -5,6 +5,8 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
 
+import java.util.Arrays;
+
 public enum JetSuitParticles {
 
     BUBBLE("bubble", JetSuitAdditions.BUBBLES_JET_EXHAUST),
@@ -12,6 +14,11 @@ public enum JetSuitParticles {
     SOUL_FIRE_FLAME("soul_fire_flame", ParticleTypes.SOUL_FIRE_FLAME),
     COLORED_EXHAUST("colored_exhaust", JetSuitAdditions.COLORED_JET_EXHAUST);
 
+    public static final JetSuitParticles[] PARTICLES = new JetSuitParticles[]{
+            BUBBLE,
+            END_ROD,
+            SOUL_FIRE_FLAME
+    };
 
     private final ParticleOptions particleEffect;
     private final String identifier;
@@ -28,9 +35,8 @@ public enum JetSuitParticles {
     }
 
     public static JetSuitParticles fromIdentifier(String identifier) {
-        if (identifier.equals(BUBBLE.identifier)) return BUBBLE;
-        if (identifier.equals(END_ROD.identifier)) return END_ROD;
-        // if (identifier.equals(COLORED_EXHAUST.identifier)) return COLORED_EXHAUST;
-        return SOUL_FIRE_FLAME;
+        var found = Arrays.stream(PARTICLES).filter(p -> p.identifier.equals(identifier)).findFirst();
+
+        return found.orElse(SOUL_FIRE_FLAME);
     }
 }

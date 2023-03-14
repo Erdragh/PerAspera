@@ -6,7 +6,8 @@
   "mixins": [
     "ItemRegistryMixin",
     "PlayerEntityMixin",
-    "JetSuitMixin"
+    "JetSuitMixin",
+    "BucketItemMixin"
   ],
   "client": [
   ],

@@ -9,7 +9,10 @@ import com.mojang.math.Matrix4f;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.OptionsScreen;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.controls.ControlsScreen;
+import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
@@ -24,6 +27,8 @@ public class JetSuitCustomizationScreen extends Screen {
     private final InteractionHand hand;
 
     private static final int WINDOW_WIDTH = 150, WINDOW_HEIGHT = 100;
+
+    private double scrollProgress = 0;
 
     private ArrayList<Button> buttons = new ArrayList<>();
 
@@ -40,18 +45,13 @@ public class JetSuitCustomizationScreen extends Screen {
     protected void init() {
         super.init();
         buttons = new ArrayList<>();
-        this.buttons.add(this.addWidget(new Button((this.width - WINDOW_WIDTH) / 2, (this.height - WINDOW_HEIGHT) / 2, WINDOW_WIDTH, 20, new TranslatableComponent(JetSuitAdditions.MODID + ".gui.jet_suit_customization.default"), button -> {
-            ClientPlayNetworking.send(C2SPackets.CHANGE_JET_PARTICLE, PacketByteBufs.create().writeEnum(JetSuitParticles.SOUL_FIRE_FLAME));
-            this.onClose();
-        })));
-        this.buttons.add(this.addWidget(new Button((this.width - WINDOW_WIDTH) / 2, (this.height - WINDOW_HEIGHT) / 2 + 30, WINDOW_WIDTH, 20, new TranslatableComponent(JetSuitAdditions.MODID + ".gui.jet_suit_customization.end_rod"), button -> {
-            ClientPlayNetworking.send(C2SPackets.CHANGE_JET_PARTICLE, PacketByteBufs.create().writeEnum(JetSuitParticles.END_ROD));
-            this.onClose();
-        })));
-        this.buttons.add(this.addWidget(new Button((this.width - WINDOW_WIDTH) / 2, (this.height - WINDOW_HEIGHT) / 2 + 60, WINDOW_WIDTH, 20, new TranslatableComponent(JetSuitAdditions.MODID + ".gui.jet_suit_customization.bubble"), button -> {
-            ClientPlayNetworking.send(C2SPackets.CHANGE_JET_PARTICLE, PacketByteBufs.create().writeEnum(JetSuitParticles.BUBBLE));
-            this.onClose();
-        })));
+        for (int i = 0; i < JetSuitParticles.PARTICLES.length; i++) {
+            JetSuitParticles p = JetSuitParticles.PARTICLES[i];
+            this.buttons.add(this.addWidget(new Button((this.width - WINDOW_WIDTH) / 2, (this.height - WINDOW_HEIGHT) / 2 + i * 30, WINDOW_WIDTH, 20, new TranslatableComponent(JetSuitAdditions.MODID + ".gui.jet_suit_customization." + p.getIdentifier()), button -> {
+                ClientPlayNetworking.send(C2SPackets.CHANGE_JET_PARTICLE, PacketByteBufs.create().writeEnum(p));
+                this.onClose();
+            })));
+        }
     }
 
     @Override
@@ -66,7 +66,10 @@ public class JetSuitCustomizationScreen extends Screen {
         this.font.draw(matrices, displayedText, (this.width - textWidth) / 2, (this.height - WINDOW_HEIGHT) / 2 - 20, 0xffffff);
 
         for (var button : this.buttons) {
+            var oldY = button.y;
+            button.y = (int) (oldY + scrollProgress);
             button.render(matrices, mouseX, mouseY, delta);
+            button.y = oldY;
         }
 
     }
@@ -79,5 +82,13 @@ public class JetSuitCustomizationScreen extends Screen {
     @Override
     public void tick() {
         super.tick();
+    }
+
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
+        System.out.println(mouseX + " " + mouseY + " " + delta);
+        this.scrollProgress += delta * 10;
+        if (scrollProgress > 0) scrollProgress = 0;
+        return super.mouseScrolled(mouseX, mouseY, delta);
     }
 }
