@@ -11,7 +11,7 @@
   "item.per_aspera.jet_suit_flash_card": "Jet Suit Flash Card",
 
   "per_aspera.gui.jet_suit_customization.title": "Choose the particle style for your Jet Suit",
-  "per_aspera.gui.jet_suit_customization.default": "Default (Soul Fire)",
+  "per_aspera.gui.jet_suit_customization.soul_fire_flame": "Soul Fire",
   "per_aspera.gui.jet_suit_customization.end_rod": "End Rod",
   "per_aspera.gui.jet_suit_customization.bubble": "Bubbles"
 }
