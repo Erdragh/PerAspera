@@ -82,9 +82,9 @@ public class JetSuitCustomizationScreen extends Screen {
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
-        System.out.println(mouseX + " " + mouseY + " " + delta);
-        this.scrollProgress += delta * 10;
-        if (scrollProgress > 0) scrollProgress = 0;
+        //System.out.println(mouseX + " " + mouseY + " " + delta);
+        //this.scrollProgress += delta * 10;
+        //if (scrollProgress > 0) scrollProgress = 0;
         return super.mouseScrolled(mouseX, mouseY, delta);
     }
 }
