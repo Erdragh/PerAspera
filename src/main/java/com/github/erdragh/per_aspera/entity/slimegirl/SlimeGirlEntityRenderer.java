@@ -1,4 +1,4 @@
-package com.github.erdragh.per_aspera.entity;
+package com.github.erdragh.per_aspera.entity.slimegirl;
 
 import com.github.erdragh.per_aspera.PerAspera;
 import com.github.erdragh.per_aspera.client.PerAsperaClient;
@@ -20,7 +20,16 @@ public class SlimeGirlEntityRenderer extends MobRenderer<SlimeGirlEntity, SlimeG
 
     @Override
     public void render(SlimeGirlEntity entity, float entityYaw, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int packedLight) {
+        this.shadowRadius = 0.25f * (float)entity.getSize();
         super.render(entity, entityYaw, partialTicks, matrixStack, buffer, packedLight);
+    }
+
+    @Override
+    protected void scale(SlimeGirlEntity livingEntity, PoseStack matrixStack, float partialTickTime) {
+        matrixStack.scale(0.999f, 0.999f, 0.999f);
+        matrixStack.translate(0.0, 0.001f, 0.0);
+        float size = livingEntity.getSize() * SlimeGirlEntity.BASE_SIZE;
+        matrixStack.scale(1 * size, 1.0f * size, 1 * size);
     }
 
     @Override

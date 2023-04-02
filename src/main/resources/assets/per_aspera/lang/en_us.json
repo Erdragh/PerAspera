@@ -13,5 +13,7 @@
   "per_aspera.gui.jet_suit_customization.title": "Choose the particle style for your Jet Suit",
   "per_aspera.gui.jet_suit_customization.soul_fire_flame": "Soul Fire",
   "per_aspera.gui.jet_suit_customization.end_rod": "End Rod",
-  "per_aspera.gui.jet_suit_customization.bubble": "Bubbles"
+  "per_aspera.gui.jet_suit_customization.bubble": "Bubbles",
+
+  "entity.per_aspera.slime_girl": "Slimegirl"
 }

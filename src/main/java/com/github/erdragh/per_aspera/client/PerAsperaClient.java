@@ -1,8 +1,8 @@
 package com.github.erdragh.per_aspera.client;
 
 import com.github.erdragh.per_aspera.PerAspera;
-import com.github.erdragh.per_aspera.entity.SlimeGirlEntityModel;
-import com.github.erdragh.per_aspera.entity.SlimeGirlEntityRenderer;
+import com.github.erdragh.per_aspera.entity.slimegirl.SlimeGirlEntityModel;
+import com.github.erdragh.per_aspera.entity.slimegirl.SlimeGirlEntityRenderer;
 import com.github.erdragh.per_aspera.networking.C2SPackets;
 import com.github.erdragh.per_aspera.particle.ColoredJetExhaustParticle;
 import com.mojang.blaze3d.platform.InputConstants;

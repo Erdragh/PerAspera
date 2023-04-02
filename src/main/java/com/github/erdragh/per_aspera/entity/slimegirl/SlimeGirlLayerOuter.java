@@ -1,4 +1,4 @@
-package com.github.erdragh.per_aspera.entity;
+package com.github.erdragh.per_aspera.entity.slimegirl;
 
 import com.github.erdragh.per_aspera.client.PerAsperaClient;
 import com.mojang.blaze3d.vertex.PoseStack;
