@@ -1,5 +1,6 @@
 package com.github.erdragh.per_aspera.items;
 
+import com.github.erdragh.per_aspera.client.ScreenUtils;
 import com.github.erdragh.per_aspera.client.screen.JetSuitCustomizationScreen;
 import com.github.erdragh.per_aspera.items.armour.ImprovedJetSuit;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -23,7 +24,7 @@ public class JetSuitFlashCard extends Item {
     public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
         if (world.isClientSide) {
             if (user.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ImprovedJetSuit) {
-                Minecraft.getInstance().setScreen(new JetSuitCustomizationScreen(user, user.getItemBySlot(EquipmentSlot.CHEST), hand));
+                ScreenUtils.openJetSuitFlashCardScreen(user, hand);
                 return InteractionResultHolder.success(user.getItemInHand(hand));
             } else {
                 return InteractionResultHolder.pass(user.getItemInHand(hand));

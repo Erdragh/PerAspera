@@ -6,10 +6,10 @@
   "mixins": [
     "ItemRegistryMixin",
     "PlayerEntityMixin",
-    "JetSuitMixin",
     "BucketItemMixin"
   ],
   "client": [
+    "JetSuitMixin"
   ],
   "injectors": {
     "defaultRequire": 1

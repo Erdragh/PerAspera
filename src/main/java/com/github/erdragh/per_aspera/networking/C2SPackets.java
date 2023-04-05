@@ -4,6 +4,7 @@ import com.github.erdragh.per_aspera.PerAspera;
 import com.github.erdragh.per_aspera.items.armour.ImprovedJetSuit;
 import com.github.erdragh.per_aspera.particle.JetSuitParticles;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.Util;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -25,7 +26,7 @@ public class C2SPackets {
                 chestStack.getOrCreateTag().putBoolean("toggle_on", !chestStack.getOrCreateTag().getBoolean("toggle_on"));
                 Component text = new TranslatableComponent(PerAspera.MODID + ".msg.jet_suit_toggle").append(new TranslatableComponent(PerAspera.MODID + ".msg.jet_suit_" + (chestStack.getOrCreateTag().getBoolean("toggle_on") ? "on" : "off")));
 
-                player.sendMessage(text, ChatType.SYSTEM, null);
+                player.sendMessage(text, ChatType.SYSTEM, Util.NIL_UUID);
             }
         });
         ServerPlayNetworking.registerGlobalReceiver(TOGGLE_HOVER, (server, player, handler, buf, responseSender) -> {
@@ -34,7 +35,7 @@ public class C2SPackets {
                 chestStack.getOrCreateTag().putBoolean("toggle_hover", !chestStack.getOrCreateTag().getBoolean("toggle_hover"));
                 Component text = new TranslatableComponent(PerAspera.MODID + ".msg.jet_suit_toggle_hover").append(new TranslatableComponent(PerAspera.MODID + ".msg.jet_suit_" + (chestStack.getOrCreateTag().getBoolean("toggle_hover") ? "on" : "off")));
 
-                player.sendMessage(text, ChatType.SYSTEM, null);
+                player.sendMessage(text, ChatType.SYSTEM, Util.NIL_UUID);
             }
         });
         ServerPlayNetworking.registerGlobalReceiver(CHANGE_JET_PARTICLE, (server, player, handler, buf, responseSender) -> {

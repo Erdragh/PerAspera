@@ -32,6 +32,7 @@ public class PerAspera implements ModInitializer {
         Registry.register(Registry.PARTICLE_TYPE, new ResourceLocation(MODID, "bubbles_jet_exhaust"), BUBBLES_JET_EXHAUST);
 
         Registry.register(Registry.ITEM, new ResourceLocation(MODID, "jet_suit_flash_card"), JET_SUIT_FLASH_CARD);
+        LOGGER.info("Per Aspera initialized.");
     }
 
 

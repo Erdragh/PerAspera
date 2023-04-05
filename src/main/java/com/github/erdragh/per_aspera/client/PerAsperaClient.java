@@ -23,6 +23,7 @@ public class PerAsperaClient implements ClientModInitializer {
 
     public static KeyMapping jetSuitToggle, jetSuitHoverToggle;
 
+
     @Override
     public void onInitializeClient() {
         jetSuitToggle = KeyBindingHelper.registerKeyBinding(new KeyMapping(PerAspera.MODID + ".key.toggle_jet_suit", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_COMMA, KEY_CATEGORY));
@@ -40,5 +41,6 @@ public class PerAsperaClient implements ClientModInitializer {
         ParticleFactoryRegistry.getInstance().register(PerAspera.COLORED_JET_EXHAUST, ColoredJetExhaustParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(PerAspera.END_ROD_JET_EXHAUST, FlameParticle.Provider::new);
         ParticleFactoryRegistry.getInstance().register(PerAspera.BUBBLES_JET_EXHAUST, FlameParticle.Provider::new);
+        PerAspera.LOGGER.info("Per Aspera Client initialized.");
     }
 }

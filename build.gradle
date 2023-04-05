@@ -34,7 +34,7 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation "curse.maven:ad_astra-635042:4390099"
+    modImplementation "curse.maven:ad_astra-635042:4466614"
     modImplementation "curse.maven:cloth_config-348521:3972425"
     modImplementation "curse.maven:tech_reborn-233564:4145507"
     modImplementation "curse.maven:reborn_core-237903:4145508"
