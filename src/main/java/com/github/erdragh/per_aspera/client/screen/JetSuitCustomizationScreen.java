@@ -5,6 +5,8 @@ import com.github.erdragh.per_aspera.particle.JetSuitParticles;
 import com.github.erdragh.per_aspera.networking.C2SPackets;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.gui.components.Button;
@@ -16,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.*;
 
+@Environment(EnvType.CLIENT)
 public class JetSuitCustomizationScreen extends Screen {
 
     private final Player player;

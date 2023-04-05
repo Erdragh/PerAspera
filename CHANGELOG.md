@@ -1,5 +1,7 @@
 # indev
 - Nothing yet
+# 1.3.1
+HOTFIX for the mod crashing on dedicated servers
 
 # 1.3
 Improved the fix for lava turning into ice, should now not break other mods using the bucket anymore.
