@@ -15,5 +15,7 @@
   "per_aspera.gui.jet_suit_customization.end_rod": "End Rod",
   "per_aspera.gui.jet_suit_customization.bubble": "Bubbles",
 
-  "entity.per_aspera.slime_girl": "Slimegirl"
+  "entity.per_aspera.slime_girl": "Slimegirl",
+
+  "block.ad_astra.blue_iron_pillar": "Glowing Iron Pillar [LEGACY]"
 }
