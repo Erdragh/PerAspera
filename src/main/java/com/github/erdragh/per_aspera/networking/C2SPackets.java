@@ -10,6 +10,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.level.block.BedBlock;
 
 public class C2SPackets {
 
@@ -26,7 +27,7 @@ public class C2SPackets {
                 chestStack.getOrCreateTag().putBoolean("toggle_on", !chestStack.getOrCreateTag().getBoolean("toggle_on"));
                 Component text = new TranslatableComponent(PerAspera.MODID + ".msg.jet_suit_toggle").append(new TranslatableComponent(PerAspera.MODID + ".msg.jet_suit_" + (chestStack.getOrCreateTag().getBoolean("toggle_on") ? "on" : "off")));
 
-                player.sendMessage(text, ChatType.SYSTEM, Util.NIL_UUID);
+                player.displayClientMessage(text, true);
             }
         });
         ServerPlayNetworking.registerGlobalReceiver(TOGGLE_HOVER, (server, player, handler, buf, responseSender) -> {
@@ -35,7 +36,7 @@ public class C2SPackets {
                 chestStack.getOrCreateTag().putBoolean("toggle_hover", !chestStack.getOrCreateTag().getBoolean("toggle_hover"));
                 Component text = new TranslatableComponent(PerAspera.MODID + ".msg.jet_suit_toggle_hover").append(new TranslatableComponent(PerAspera.MODID + ".msg.jet_suit_" + (chestStack.getOrCreateTag().getBoolean("toggle_hover") ? "on" : "off")));
 
-                player.sendMessage(text, ChatType.SYSTEM, Util.NIL_UUID);
+                player.displayClientMessage(text, true);
             }
         });
         ServerPlayNetworking.registerGlobalReceiver(CHANGE_JET_PARTICLE, (server, player, handler, buf, responseSender) -> {
