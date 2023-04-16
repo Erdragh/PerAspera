@@ -1,5 +1,9 @@
 # indev
 - Nothing yet
+
+# 1.3.2
+move jet suit messages to action bar
+
 # 1.3.1
 HOTFIX for the mod crashing on dedicated servers
 
