@@ -4,30 +4,29 @@ import com.github.erdragh.per_aspera.client.ScreenUtils;
 import com.github.erdragh.per_aspera.client.screen.JetSuitCustomizationScreen;
 import com.github.erdragh.per_aspera.items.armour.ImprovedJetSuit;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.client.Minecraft;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.world.World;
 
 public class JetSuitFlashCard extends Item {
     public JetSuitFlashCard() {
-        super(new FabricItemSettings().group(CreativeModeTab.TAB_TOOLS));
+        super(new FabricItemSettings().group(ItemGroup.TOOLS));
     }
 
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
-        if (world.isClientSide) {
-            if (user.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ImprovedJetSuit) {
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        if (world.isClient) {
+            if (user.getEquippedStack(EquipmentSlot.CHEST).getItem() instanceof ImprovedJetSuit) {
                 ScreenUtils.openJetSuitFlashCardScreen(user, hand);
-                return InteractionResultHolder.success(user.getItemInHand(hand));
+                return TypedActionResult.success(user.getStackInHand(hand));
             } else {
-                return InteractionResultHolder.pass(user.getItemInHand(hand));
+                return TypedActionResult.pass(user.getStackInHand(hand));
             }
         }
         return super.use(world, user, hand);

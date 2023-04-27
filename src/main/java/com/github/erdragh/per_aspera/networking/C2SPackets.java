@@ -4,46 +4,44 @@ import com.github.erdragh.per_aspera.PerAspera;
 import com.github.erdragh.per_aspera.items.armour.ImprovedJetSuit;
 import com.github.erdragh.per_aspera.particle.JetSuitParticles;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.Util;
-import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.level.block.BedBlock;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Identifier;
 
 public class C2SPackets {
 
-    public static final ResourceLocation TOGGLE_ON = new ResourceLocation(PerAspera.MODID, "toggle_on");
-    public static final ResourceLocation TOGGLE_HOVER = new ResourceLocation(PerAspera.MODID, "toggle_hover");
+    public static final Identifier TOGGLE_ON = new Identifier(PerAspera.MODID, "toggle_on");
+    public static final Identifier TOGGLE_HOVER = new Identifier(PerAspera.MODID, "toggle_hover");
 
-    public static final ResourceLocation CHANGE_JET_PARTICLE = new ResourceLocation(PerAspera.MODID, "change_jet_particle");
+    public static final Identifier CHANGE_JET_PARTICLE = new Identifier(PerAspera.MODID, "change_jet_particle");
 
 
     public static void register() {
         ServerPlayNetworking.registerGlobalReceiver(TOGGLE_ON, (server, player, handler, buf, responseSender) -> {
-            var chestStack = player.getInventory().getArmor(EquipmentSlot.CHEST.getIndex());
+            var chestStack = player.getInventory().getArmorStack(EquipmentSlot.CHEST.getEntitySlotId());
             if (chestStack.getItem() instanceof ImprovedJetSuit) {
-                chestStack.getOrCreateTag().putBoolean("toggle_on", !chestStack.getOrCreateTag().getBoolean("toggle_on"));
-                Component text = new TranslatableComponent(PerAspera.MODID + ".msg.jet_suit_toggle").append(new TranslatableComponent(PerAspera.MODID + ".msg.jet_suit_" + (chestStack.getOrCreateTag().getBoolean("toggle_on") ? "on" : "off")));
+                chestStack.getOrCreateNbt().putBoolean("toggle_on", !chestStack.getOrCreateNbt().getBoolean("toggle_on"));
+                Text text = new TranslatableText(PerAspera.MODID + ".msg.jet_suit_toggle").append(new TranslatableText(PerAspera.MODID + ".msg.jet_suit_" + (chestStack.getOrCreateNbt().getBoolean("toggle_on") ? "on" : "off")));
 
-                player.displayClientMessage(text, true);
+                player.sendMessage(text, true);
             }
         });
         ServerPlayNetworking.registerGlobalReceiver(TOGGLE_HOVER, (server, player, handler, buf, responseSender) -> {
-            var chestStack = player.getInventory().getArmor(EquipmentSlot.CHEST.getIndex());
+            var chestStack = player.getInventory().getArmorStack(EquipmentSlot.CHEST.getEntitySlotId());
             if (chestStack.getItem() instanceof ImprovedJetSuit) {
-                chestStack.getOrCreateTag().putBoolean("toggle_hover", !chestStack.getOrCreateTag().getBoolean("toggle_hover"));
-                Component text = new TranslatableComponent(PerAspera.MODID + ".msg.jet_suit_toggle_hover").append(new TranslatableComponent(PerAspera.MODID + ".msg.jet_suit_" + (chestStack.getOrCreateTag().getBoolean("toggle_hover") ? "on" : "off")));
+                chestStack.getOrCreateNbt().putBoolean("toggle_hover", !chestStack.getOrCreateNbt().getBoolean("toggle_hover"));
+                Text text = new TranslatableText(PerAspera.MODID + ".msg.jet_suit_toggle_hover").append(new TranslatableText(PerAspera.MODID + ".msg.jet_suit_" + (chestStack.getOrCreateNbt().getBoolean("toggle_hover") ? "on" : "off")));
 
-                player.displayClientMessage(text, true);
+                player.sendMessage(text, true);
             }
         });
         ServerPlayNetworking.registerGlobalReceiver(CHANGE_JET_PARTICLE, (server, player, handler, buf, responseSender) -> {
-            var chestStack = player.getInventory().getArmor(EquipmentSlot.CHEST.getIndex());
+            var chestStack = player.getInventory().getArmorStack(EquipmentSlot.CHEST.getEntitySlotId());
             if (chestStack.getItem() instanceof ImprovedJetSuit) {
-                var particleType = buf.readEnum(JetSuitParticles.class);
-                chestStack.getOrCreateTag().putString("particle_type", particleType.getIdentifier());
+                var particleType = buf.readEnumConstant(JetSuitParticles.class);
+                chestStack.getOrCreateNbt().putString("particle_type", particleType.getIdentifier());
             }
         });
     }
