@@ -1,10 +1,10 @@
 package com.github.erdragh.per_aspera.particle;
 
 import com.github.erdragh.per_aspera.PerAspera;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
-
 import java.util.Arrays;
+import java.util.Optional;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 
 public enum JetSuitParticles {
 
@@ -19,14 +19,14 @@ public enum JetSuitParticles {
             SOUL_FIRE_FLAME
     };
 
-    private final ParticleOptions particleEffect;
+    private final ParticleEffect particleEffect;
     private final String identifier;
-    JetSuitParticles(String identifier, ParticleOptions particleEffect) {
+    JetSuitParticles(String identifier, ParticleEffect particleEffect) {
         this.identifier = identifier;
         this.particleEffect = particleEffect;
     }
 
-    public ParticleOptions get() {
+    public ParticleEffect get() {
         return this.particleEffect;
     }
     public String getIdentifier() {
