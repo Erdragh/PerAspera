@@ -4,14 +4,13 @@ import com.github.erdragh.per_aspera.PerAspera;
 import com.github.erdragh.per_aspera.items.armour.ImprovedJetSuit;
 import com.github.erdragh.per_aspera.items.armour.ThrusterBoots;
 import com.github.erdragh.per_aspera.particle.JetSuitParticles;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.Util;
-import net.minecraft.network.chat.ChatType;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.level.block.BedBlock;
 
 public class C2SPackets {
 
@@ -20,11 +19,13 @@ public class C2SPackets {
 
     public static final ResourceLocation CHANGE_JET_PARTICLE = new ResourceLocation(PerAspera.MODID, "change_jet_particle");
 
+    public static final ResourceLocation PLAYER_BOOSTED_C2S = new ResourceLocation(PerAspera.MODID, "c2s_player_boosted");
+
 
     public static void register() {
         ServerPlayNetworking.registerGlobalReceiver(TOGGLE_ON, (server, player, handler, buf, responseSender) -> {
             var thrusterBoots = ThrusterBoots.getWornThrusterBoots(player);
-            if (thrusterBoots != null) {
+            if (thrusterBoots.is(PerAspera.THRUSTER_BOOTS)) {
                 thrusterBoots.getOrCreateTag().putBoolean("toggle_on", !thrusterBoots.getOrCreateTag().getBoolean("toggle_on"));
                 Component text = new TranslatableComponent(PerAspera.MODID + ".msg.thruster_boots_toggle").append(new TranslatableComponent(PerAspera.MODID + ".msg.jet_suit_" + (thrusterBoots.getOrCreateTag().getBoolean("toggle_on") ? "on" : "off")));
 
@@ -38,6 +39,10 @@ public class C2SPackets {
 
                 player.displayClientMessage(text, true);
             }
+        });
+        ServerPlayNetworking.registerGlobalReceiver(PLAYER_BOOSTED_C2S, (server, player, handler, buf, responseSender) -> {
+            var packet = ServerPlayNetworking.createS2CPacket(S2CPackets.PLAYER_BOOSTED_S2C,  new FriendlyByteBuf(PacketByteBufs.create()).writeUUID(player.getUUID()));
+            server.getPlayerList().broadcastAll(packet, player.level.dimension());
         });
         ServerPlayNetworking.registerGlobalReceiver(TOGGLE_HOVER, (server, player, handler, buf, responseSender) -> {
             var chestStack = player.getInventory().getArmor(EquipmentSlot.CHEST.getIndex());

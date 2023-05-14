@@ -2,6 +2,7 @@ package com.github.erdragh.per_aspera.client;
 
 import com.github.erdragh.per_aspera.PerAspera;
 import com.github.erdragh.per_aspera.networking.C2SPackets;
+import com.github.erdragh.per_aspera.networking.S2CPackets;
 import com.github.erdragh.per_aspera.particle.ColoredJetExhaustParticle;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ClientModInitializer;
@@ -41,6 +42,7 @@ public class PerAsperaClient implements ClientModInitializer {
         ParticleFactoryRegistry.getInstance().register(PerAspera.COLORED_JET_EXHAUST, ColoredJetExhaustParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(PerAspera.END_ROD_JET_EXHAUST, FlameParticle.Provider::new);
         ParticleFactoryRegistry.getInstance().register(PerAspera.BUBBLES_JET_EXHAUST, FlameParticle.Provider::new);
+        S2CPackets.register();
         PerAspera.LOGGER.info("Per Aspera Client initialized.");
     }
 }
