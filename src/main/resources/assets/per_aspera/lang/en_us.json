@@ -1,11 +1,12 @@
 {
   "per_aspera.msg.jet_suit_toggle": "Jet Suit turned ",
+  "per_aspera.msg.thruster_boots_toggle": "Thruster Boots turned ",
   "per_aspera.msg.jet_suit_toggle_hover": "Jet Suit Hover turned ",
   "per_aspera.msg.jet_suit_on": "on",
   "per_aspera.msg.jet_suit_off": "off",
 
-  "per_aspera.key_category": "Jet Suit Additions",
-  "per_aspera.key.toggle_jet_suit": "Turn the Jet Suit on/off",
+  "per_aspera.key_category": "Per Aspera",
+  "per_aspera.key.toggle_jet_suit": "Turn Jet Suit or Thruster Boots on/off",
   "per_aspera.key.toggle_jet_suit_hover": "Turn Hover Mode on/off",
 
   "item.per_aspera.jet_suit_flash_card": "Jet Suit Flash Card",
@@ -14,8 +15,6 @@
   "per_aspera.gui.jet_suit_customization.soul_fire_flame": "Soul Fire",
   "per_aspera.gui.jet_suit_customization.end_rod": "End Rod",
   "per_aspera.gui.jet_suit_customization.bubble": "Bubbles",
-
-  "entity.per_aspera.slime_girl": "Slimegirl",
 
   "block.ad_astra.blue_iron_pillar": "Glowing Iron Pillar [LEGACY]"
 }
