@@ -3,29 +3,29 @@ package com.github.erdragh.per_aspera.particle;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
-import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.particle.DefaultParticleType;
 import org.jetbrains.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
-public class ColoredJetExhaustParticle extends RisingParticle {
+public class ColoredJetExhaustParticle extends AbstractSlowingParticle {
 
 
-    protected ColoredJetExhaustParticle(ClientLevel clientWorld, double xPos, double yPos, double zPos, FabricSpriteProvider spriteSet, double xd, double yd, double zd) {
+    protected ColoredJetExhaustParticle(ClientWorld clientWorld, double xPos, double yPos, double zPos, FabricSpriteProvider spriteSet, double xd, double yd, double zd) {
         super(clientWorld, xPos, yPos, zPos, 0, 0, 0);
 
-        friction = 0;
+        velocityMultiplier = 0;
         this.x = 0;
         this.y = 0;
         this.z = 0;
-        this.quadSize *= 0.75F;
-        this.lifetime = 20;
-        this.setSpriteFromAge(spriteSet);
+        this.scale *= 0.75F;
+        this.maxAge = 20;
+        this.setSpriteForAge(spriteSet);
 
-        this.rCol = (float) xd;
-        this.gCol = (float) yd;
-        this.bCol = (float) zd;
+        this.red = (float) xd;
+        this.green = (float) yd;
+        this.blue = (float) zd;
     }
 
     @Override
@@ -35,16 +35,16 @@ public class ColoredJetExhaustParticle extends RisingParticle {
     }
 
     @Override
-    public ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+    public ParticleTextureSheet getType() {
+        return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     private void fadeOut() {
-        this.alpha = (-(1/(float) lifetime) * age + 1);
+        this.alpha = (-(1/(float) maxAge) * age + 1);
     }
 
     @Environment(EnvType.CLIENT)
-    public static class Factory implements ParticleProvider<SimpleParticleType> {
+    public static class Factory implements ParticleFactory<DefaultParticleType> {
         private final FabricSpriteProvider sprites;
 
         public Factory(FabricSpriteProvider spriteSet) {
@@ -53,7 +53,7 @@ public class ColoredJetExhaustParticle extends RisingParticle {
 
         @Nullable
         @Override
-        public Particle createParticle(SimpleParticleType parameters, ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+        public Particle createParticle(DefaultParticleType parameters, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
             return new ColoredJetExhaustParticle(world, x, y, z, this.sprites, velocityX, velocityY, velocityZ);
         }
     }
