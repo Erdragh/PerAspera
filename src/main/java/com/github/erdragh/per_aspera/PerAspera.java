@@ -2,14 +2,19 @@ package com.github.erdragh.per_aspera;
 
 import com.github.erdragh.per_aspera.config.PerAsperaConfig;
 import com.github.erdragh.per_aspera.items.JetSuitFlashCard;
+import com.github.erdragh.per_aspera.items.armour.ThrusterBoots;
+import com.github.erdragh.per_aspera.items.armour.ThrusterBootsMaterial;
 import com.github.erdragh.per_aspera.networking.C2SPackets;
-import com.mojang.logging.LogUtils;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.api.ModLoadingContext;
+import net.minecraftforge.fml.config.ModConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

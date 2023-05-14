@@ -2,6 +2,15 @@ package com.github.erdragh.per_aspera.networking;
 
 import com.github.erdragh.per_aspera.PerAspera;
 import com.github.erdragh.per_aspera.items.armour.ImprovedJetSuit;
+import com.github.erdragh.per_aspera.items.armour.ThrusterBoots;
+import com.github.erdragh.per_aspera.particle.JetSuitParticles;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Identifier;
 
 
 public class C2SPackets {
@@ -17,7 +26,7 @@ public class C2SPackets {
     public static void register() {
         ServerPlayNetworking.registerGlobalReceiver(TOGGLE_ON, (server, player, handler, buf, responseSender) -> {
             var thrusterBoots = ThrusterBoots.getWornThrusterBoots(player);
-            if (thrusterBoots.is(PerAspera.THRUSTER_BOOTS)) {
+            if (thrusterBoots.isOf(PerAspera.THRUSTER_BOOTS)) {
                 thrusterBoots.getOrCreateNbt().putBoolean("toggle_on", !thrusterBoots.getOrCreateNbt().getBoolean("toggle_on"));
                 Text text = new TranslatableText(PerAspera.MODID + ".msg.thruster_boots_toggle").append(new TranslatableText(PerAspera.MODID + ".msg.jet_suit_" + (thrusterBoots.getOrCreateNbt().getBoolean("toggle_on") ? "on" : "off")));
 
@@ -33,8 +42,8 @@ public class C2SPackets {
             }
         });
         ServerPlayNetworking.registerGlobalReceiver(PLAYER_BOOSTED_C2S, (server, player, handler, buf, responseSender) -> {
-            var packet = ServerPlayNetworking.createS2CPacket(S2CPackets.PLAYER_BOOSTED_S2C,  new FriendlyByteBuf(PacketByteBufs.create()).writeUUID(player.getUUID()));
-            server.getPlayerList().broadcastAll(packet, player.world.dimension());
+            var packet = ServerPlayNetworking.createS2CPacket(S2CPackets.PLAYER_BOOSTED_S2C,  new PacketByteBuf(PacketByteBufs.create()).writeUuid(player.getUuid()));
+            server.getPlayerManager().sendToDimension(packet, player.world.getRegistryKey());
         });
         ServerPlayNetworking.registerGlobalReceiver(TOGGLE_HOVER, (server, player, handler, buf, responseSender) -> {
             var chestStack = player.getInventory().getArmorStack(EquipmentSlot.CHEST.getEntitySlotId());

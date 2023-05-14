@@ -4,6 +4,7 @@ import com.github.alexnijjar.ad_astra.AdAstra;
 import com.github.alexnijjar.ad_astra.util.ModKeyBindings;
 import com.github.erdragh.per_aspera.config.PerAsperaConfig;
 import com.github.erdragh.per_aspera.items.armour.ImprovedJetSuit;
+import com.github.erdragh.per_aspera.items.armour.ThrusterBoots;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -27,7 +28,7 @@ public class PlayerEntityMixin {
         }
         if (PerAsperaConfig.THRUSTER_BOOTS_ENABLED.get()) {
             PlayerEntity player = ((PlayerEntity) (Object) this);
-            if (player.isCrouching() && ModKeyBindings.jumpKeyDown(player) && ThrusterBoots.playerIsWearingThrusterBoots(player)) {
+            if (player.isSneaking() && ModKeyBindings.jumpKeyDown(player) && ThrusterBoots.playerIsWearingThrusterBoots(player)) {
                 ThrusterBoots.boostPlayer(player, ThrusterBoots.getWornThrusterBoots(player));
             }
         }
