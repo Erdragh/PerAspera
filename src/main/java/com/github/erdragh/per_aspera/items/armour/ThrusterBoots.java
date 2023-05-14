@@ -1,6 +1,6 @@
 package com.github.erdragh.per_aspera.items.armour;
 
-import com.github.alexnijjar.ad_astra.items.armour.SpaceSuit;
+import com.github.alexnijjar.ad_astra.items.armour.NetheriteSpaceSuit;
 import com.github.erdragh.per_aspera.PerAspera;
 import com.github.erdragh.per_aspera.config.PerAsperaConfig;
 import com.github.erdragh.per_aspera.networking.C2SPackets;
@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Random;
 
-public class ThrusterBoots extends SpaceSuit {
+public class ThrusterBoots extends NetheriteSpaceSuit {
 
     private static final Random particleRandom = new Random();
 
