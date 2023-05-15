@@ -28,7 +28,8 @@ public class ItemRegistryMixin {
                     target = "Lcom/github/alexnijjar/ad_astra/items/armour/JetSuit;*",
                     ordinal = 0
             ),
-            method = "<clinit>"
+            method = "<clinit>",
+            remap = false
     )
     private static JetSuit jetSuitHelmet(ArmorMaterial material, EquipmentSlot slot, Item.Settings settings) {
         return new ImprovedJetSuit(material, slot, settings);
@@ -49,7 +50,8 @@ public class ItemRegistryMixin {
                     target = "Lcom/github/alexnijjar/ad_astra/items/armour/JetSuit;*",
                     ordinal = 0
             ),
-            method = "<clinit>"
+            method = "<clinit>",
+            remap = false
     )
     private static JetSuit jetSuit(ArmorMaterial material, EquipmentSlot slot, Item.Settings settings) {
         return new ImprovedJetSuit(material, slot, settings);
@@ -70,7 +72,8 @@ public class ItemRegistryMixin {
                     target = "Lcom/github/alexnijjar/ad_astra/items/armour/JetSuit;*",
                     ordinal = 0
             ),
-            method = "<clinit>"
+            method = "<clinit>",
+            remap = false
     )
     private static JetSuit jetSuitPants(ArmorMaterial material, EquipmentSlot slot, Item.Settings settings) {
         return new ImprovedJetSuit(material, slot, settings);
@@ -91,7 +94,8 @@ public class ItemRegistryMixin {
                     target = "Lcom/github/alexnijjar/ad_astra/items/armour/JetSuit;*",
                     ordinal = 0
             ),
-            method = "<clinit>"
+            method = "<clinit>",
+            remap = false
     )
     private static JetSuit jetSuitBoots(ArmorMaterial material, EquipmentSlot slot, Item.Settings settings) {
         return new ImprovedJetSuit(material, slot, settings);
