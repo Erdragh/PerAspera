@@ -1,8 +1,6 @@
 package com.github.erdragh.per_aspera.items.armour;
 
 import com.github.alexnijjar.ad_astra.items.armour.NetheriteSpaceSuit;
-import com.github.alexnijjar.ad_astra.mixin.gravity.CommonGravityEntityMixin;
-import com.github.alexnijjar.ad_astra.util.MathUtil;
 import com.github.alexnijjar.ad_astra.util.ModUtils;
 import com.github.erdragh.per_aspera.PerAspera;
 import com.github.erdragh.per_aspera.config.PerAsperaConfig;
@@ -11,7 +9,6 @@ import com.github.erdragh.per_aspera.particle.JetSuitParticles;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.EquipmentSlot;
