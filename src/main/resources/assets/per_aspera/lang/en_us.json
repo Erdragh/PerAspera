@@ -16,5 +16,5 @@
   "per_aspera.gui.jet_suit_customization.end_rod": "End Rod",
   "per_aspera.gui.jet_suit_customization.bubble": "Bubbles",
 
-  "block.ad_astra.blue_iron_pillar": "Glowing Iron Pillar [LEGACY]"
+  "per_aspera.hud.thruster_boots_charge": "Truster Boots at %d%%"
 }

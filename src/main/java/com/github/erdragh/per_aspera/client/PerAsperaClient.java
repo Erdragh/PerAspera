@@ -1,6 +1,7 @@
 package com.github.erdragh.per_aspera.client;
 
 import com.github.erdragh.per_aspera.PerAspera;
+import com.github.erdragh.per_aspera.client.screen.PlayerOverlayScreen;
 import com.github.erdragh.per_aspera.networking.C2SPackets;
 import com.github.erdragh.per_aspera.networking.S2CPackets;
 import com.github.erdragh.per_aspera.particle.ColoredJetExhaustParticle;
@@ -11,6 +12,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.particle.FlameParticle;
@@ -29,6 +31,8 @@ public class PerAsperaClient implements ClientModInitializer {
     public void onInitializeClient() {
         jetSuitToggle = KeyBindingHelper.registerKeyBinding(new KeyBinding(PerAspera.MODID + ".key.toggle_jet_suit", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_COMMA, KEY_CATEGORY));
         jetSuitHoverToggle = KeyBindingHelper.registerKeyBinding(new KeyBinding(PerAspera.MODID + ".key.toggle_jet_suit_hover", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_PERIOD, KEY_CATEGORY));
+
+        HudRenderCallback.EVENT.register(PlayerOverlayScreen::render);
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (jetSuitToggle.wasPressed()) {

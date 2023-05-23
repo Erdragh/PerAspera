@@ -11,6 +11,7 @@ import com.github.erdragh.per_aspera.particle.JetSuitParticles;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.EquipmentSlot;
@@ -48,7 +49,6 @@ public class ThrusterBoots extends NetheriteSpaceSuit {
 
     public static void chargeJump() {
         if (jumpCharge < 1) jumpCharge += 0.01;
-        PerAspera.LOGGER.info("Jump charged to: " + jumpCharge);
     }
 
     public static void resetCharge() {
