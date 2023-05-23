@@ -1,6 +1,9 @@
 package com.github.erdragh.per_aspera.items.armour;
 
 import com.github.alexnijjar.ad_astra.items.armour.NetheriteSpaceSuit;
+import com.github.alexnijjar.ad_astra.mixin.gravity.CommonGravityEntityMixin;
+import com.github.alexnijjar.ad_astra.util.MathUtil;
+import com.github.alexnijjar.ad_astra.util.ModUtils;
 import com.github.erdragh.per_aspera.PerAspera;
 import com.github.erdragh.per_aspera.config.PerAsperaConfig;
 import com.github.erdragh.per_aspera.networking.C2SPackets;
@@ -18,6 +21,7 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -27,6 +31,8 @@ import java.util.Random;
 public class ThrusterBoots extends NetheriteSpaceSuit {
 
     private static final Random particleRandom = new Random();
+
+    private static double jumpCharge = 0;
 
     public ThrusterBoots() {
         super(PerAspera.THRUSTER_BOOTS_MATERIAL, EquipmentSlot.FEET, new FabricItemSettings().group(ItemGroup.TRANSPORTATION));
@@ -40,14 +46,31 @@ public class ThrusterBoots extends NetheriteSpaceSuit {
         return player.getEquippedStack(EquipmentSlot.FEET);
     }
 
+    public static void chargeJump() {
+        if (jumpCharge < 1) jumpCharge += 0.01;
+        PerAspera.LOGGER.info("Jump charged to: " + jumpCharge);
+    }
+
+    public static void resetCharge() {
+        jumpCharge = 0;
+    }
+
+    public static double getJumpCharge() {
+        return jumpCharge;
+    }
+
     public static void boostPlayer(PlayerEntity player, ItemStack thrusterBoots) {
         if (PerAsperaConfig.THRUSTER_BOOTS_ENABLED.get()
                 && !player.getItemCooldownManager().isCoolingDown(PerAspera.THRUSTER_BOOTS)
                 && thrusterBoots.getOrCreateNbt().getBoolean("toggle_on")
         ) {
             if (player.world.isClient()) {
-                player.setVelocity(player.getVelocity().add(0.0, PerAsperaConfig.THRUSTER_BOOTS_JUMP_STRENGTH.get(), 0.0));
+                var gravity = ModUtils.getPlanetGravity(player.world);
+                var multiplier = MathHelper.fastInverseCbrt(gravity) * jumpCharge;
+                player.setVelocity(player.getVelocity().add(new Vec3d(0.0, PerAsperaConfig.THRUSTER_BOOTS_JUMP_STRENGTH.get(), 0.0).multiply(multiplier)));
                 player.getItemCooldownManager().set(PerAspera.THRUSTER_BOOTS, PerAsperaConfig.THRUSTER_BOOTS_TIMEOUT_TICKS.get());
+                player.velocityDirty = true;
+                jumpCharge = 0;
                 ClientPlayNetworking.send(C2SPackets.PLAYER_BOOSTED_C2S, PacketByteBufs.create());
             }
         }

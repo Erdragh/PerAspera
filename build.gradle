@@ -22,6 +22,10 @@ repositories {
     maven { url = "https://jitpack.io/" } // for Porting Lib: Mixin Extras, Fabric ASM
 }
 
+loom {
+    accessWidenerPath = file("src/main/resources/per_aspera.accesswidener")
+}
+
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
