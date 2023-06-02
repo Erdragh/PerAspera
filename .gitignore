@@ -1,3 +1,11 @@
+# Neovim/JDTLS
+
+bin
+.settings
+.classpath
+.factorypath
+.project
+
 # User-specific stuff
 .idea/
 
