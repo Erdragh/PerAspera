@@ -30,5 +30,6 @@
     "fabric": "*",
     "minecraft": "1.18.2",
     "ad_astra": ">=1.0.7"
-  }
+  },
+  "accessWidener": "per_aspera.accesswidener"
 }

@@ -1,5 +1,5 @@
 # indev
-- Nothing yet
+- Thruster Boots
 
 # 1.3.2
 move jet suit messages to action bar
