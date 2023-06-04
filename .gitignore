@@ -1,3 +1,16 @@
+# Neovim/JDTLS
+
+bin
+.settings
+.classpath
+.factorypath
+.project
+
+# aseprite source files
+
+**/*.ase
+**/*.aseprite
+
 # User-specific stuff
 .idea/
 

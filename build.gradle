@@ -7,6 +7,7 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
+    mavenCentral()
     maven {
         url "https://cursemaven.com"
         content {
@@ -19,6 +20,10 @@ repositories {
     maven { url = "https://maven.parchmentmc.org" } // Parchment
     maven { url = "https://mvn.devos.one/snapshots/" }
     maven { url = "https://jitpack.io/" } // for Porting Lib: Mixin Extras, Fabric ASM
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/per_aspera.accesswidener")
 }
 
 dependencies {
@@ -40,6 +45,10 @@ dependencies {
     // Development QOL
     modLocalRuntime("com.terraformersmc:modmenu:${modmenu_version}")
     modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}")
+
+    implementation 'com.electronwill.night-config:core:3.6.5'
+    implementation 'com.electronwill.night-config:toml:3.6.5'
+    modImplementation "curse.maven:forge_config_api-547434:3943250"
 
 }
 
