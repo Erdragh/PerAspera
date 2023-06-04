@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B",
+    "P",
+    "E"
+  ],
+  "key": {
+    "B": {
+      "item": "ad_astra:netherite_space_boots"
+    },
+    "P": {
+      "item": "ad_astra:ostrum_plate"
+    },
+    "E": {
+      "item": "ad_astra:desh_engine"
+    }
+  },
+  "result": {
+    "item": "per_aspera:thruster_boots",
+    "count": 1
+  }
+}
