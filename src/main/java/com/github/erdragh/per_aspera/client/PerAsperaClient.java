@@ -1,6 +1,7 @@
 package com.github.erdragh.per_aspera.client;
 
 import com.github.erdragh.per_aspera.PerAspera;
+import com.github.erdragh.per_aspera.client.renderers.ThrusterBootsRenderer;
 import com.github.erdragh.per_aspera.client.screen.PlayerOverlayScreen;
 import com.github.erdragh.per_aspera.networking.C2SPackets;
 import com.github.erdragh.per_aspera.networking.S2CPackets;
@@ -42,6 +43,8 @@ public class PerAsperaClient implements ClientModInitializer {
                 ClientPlayNetworking.send(C2SPackets.TOGGLE_HOVER, PacketByteBufs.create());
             }
         });
+
+        ThrusterBootsRenderer.register();
 
         ParticleFactoryRegistry.getInstance().register(PerAspera.COLORED_JET_EXHAUST, ColoredJetExhaustParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(PerAspera.END_ROD_JET_EXHAUST, FlameParticle.Factory::new);

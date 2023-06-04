@@ -14,7 +14,7 @@ public class PerAsperaConfig {
                 .define("thrusterBootsEnabled", true);
 
         THRUSTER_BOOTS_JUMP_STRENGTH = builder.comment("How high thruster boots can boost you")
-                .defineInRange("thrusterBootsJumpStrength", 1.0, 0.6, 5);
+                .defineInRange("thrusterBootsJumpStrength", 0.6, 0.05, 5);
 
         THRUSTER_BOOTS_TIMEOUT_TICKS = builder.comment("Time in ticks for cooldown of using thruster boots")
                 .defineInRange("thrusterBootsTimeoutTicks", 120, 0, Integer.MAX_VALUE);

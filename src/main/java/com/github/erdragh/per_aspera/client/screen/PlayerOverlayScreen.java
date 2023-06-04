@@ -1,5 +1,6 @@
 package com.github.erdragh.per_aspera.client.screen;
 
+import com.github.alexnijjar.ad_astra.client.renderer.spacesuit.SpaceSuitRenderer;
 import com.github.erdragh.per_aspera.PerAspera;
 import com.github.erdragh.per_aspera.config.PerAsperaConfig;
 import com.github.erdragh.per_aspera.items.armour.ThrusterBoots;
@@ -18,7 +19,6 @@ public class PlayerOverlayScreen {
         var player = client.player;
 
         assert player != null;
-
         if (player.isSpectator()) return;
 
         if (ThrusterBoots.playerIsWearingThrusterBoots(player) && PerAsperaConfig.THRUSTER_BOOTS_ENABLED.get()) {
