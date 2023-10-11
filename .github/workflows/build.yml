@@ -62,11 +62,15 @@ jobs:
           echo "version=$(.github/scripts/extract_version.sh)" >> "$GITHUB_OUTPUT"
 
       - name: initialize gradle
+        env:
+          VERSION_NAME: ${{ steps.getversion.outputs.version }}
         run: ./gradlew
 
       - name: extract changelog
         if: ${{ runner.os != 'Windows' }}
         id: getchangelog
+        env:
+          VERSION_NAME: ${{ steps.getversion.outputs.version }}
         run: |
           echo "changelog=$(./gradlew -q printChangelog)" >> "$GITHUB_OUTPUT"
 
@@ -81,7 +85,7 @@ jobs:
         if: ${{ runner.os != 'Windows' }}
         run: echo ${{ steps.getchangelog.outputs.changelog }}
 
-      - name: build
+      - name: gradle clean build
         env:
           VERSION_NAME: ${{ steps.getversion.outputs.version }}
         run: ./gradlew clean build
