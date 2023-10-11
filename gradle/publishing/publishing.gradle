@@ -22,6 +22,14 @@ tasks.register("printChangelog") {
 	println(changelog_text)
 }
 
+tasks.register("printVersionDisplay") {
+	println(published_version_name)
+}
+
+tasks.register("printVersion") {
+	println(version)
+}
+
 static String makeName(String version, String minecraftVersion, String displayName) {
 	String projectVersion = "v" + version.split("-build")[0].replace("-", ".")
 	String rawPatch = System.getenv("PATCH_NUMBER")

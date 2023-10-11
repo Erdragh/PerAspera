@@ -7,9 +7,14 @@ plugins {
     id "com.matthewprenger.cursegradle" version "1.+" // curseforge publishing
 }
 
-var versionEnv = System.getenv("VERSION_NAME")
-version = versionEnv != null ? verisonEnv : project.mod_version
+version = project.mod_version
 group = project.maven_group
+
+// Formats the mod version to include the Minecraft version and build number (if present)
+// example: 1.0.0+1.18.2-100
+String runNumber = System.getenv("GITHUB_RUN_NUMBER")
+String build = runNumber != null ? "build.$runNumber" : "local"
+version = "$mod_version-$build+mc$minecraft_version"
 
 repositories {
     mavenCentral()
