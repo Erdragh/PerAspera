@@ -10,14 +10,9 @@ curseforge {
 		addGameVersion(minecraft_version)
 
 		relations {
-			for (dependency in (depends as List<String>)) {
-				var optionalDep = dependency.endsWith("?")
-				if (optionalDep) {
-					optionalDependency(dependency.replace("?", ""))
-				} else {
-					requiredDependency(dependency)
-				}
-			}
+			requiredDependency("fabric-api")
+			requiredDependency("ad-astra")
+			requiredDependency("forge-config-api-port-fabric")
 		}
 
 		// https://github.com/mraliscoder/plasmo-voice/blob/41243bc77589d975acde5385dd86414b1c92a2a8/fabric/build.gradle.kts#L173
