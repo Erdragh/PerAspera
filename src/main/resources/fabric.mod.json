@@ -29,7 +29,8 @@
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
     "minecraft": "1.18.2",
-    "ad_astra": ">=1.0.9"
+    "ad_astra": ">=1.0.9",
+    "forgeconfigapiport": ">=3.2.4"
   },
   "accessWidener": "per_aspera.accesswidener"
 }
