@@ -58,35 +58,37 @@ jobs:
         if: ${{ runner.os != 'Windows' }}
         run: chmod +x ./gradlew
 
-      - name: extract version
-        if: ${{ runner.os != 'Windows' }}
-        id: getversion
-        run: |
-          echo "version=$(.github/scripts/extract_version.sh)" >> "$GITHUB_OUTPUT"
-
       - name: gradle clean build
-        env:
-          VERSION_NAME: ${{ steps.getversion.outputs.version }}
         run: ./gradlew clean build
 
       - name: extract changelog
         if: ${{ runner.os == 'Linux' && matrix.java == '17' && github.event.inputs.publish }} # only publish from one OS with latest Java
-        id: getchangelog
-        env:
-          VERSION_NAME: ${{ steps.getversion.outputs.version }}
+        id: changelog
         run: |
           echo "changelog=$(./gradlew -q printChangelog)" >> "$GITHUB_OUTPUT"
+
+      - name: extract version number
+        if: ${{ runner.os == 'Linux' && matrix.java == '17' && github.event.inputs.publish }} # only publish from one OS with latest Java
+        id: version
+        run: |
+          echo "version=$(./gradlew -q printVersion)" >> "$GITHUB_OUTPUT"
+
+      - name: extract version display name
+        if: ${{ runner.os == 'Linux' && matrix.java == '17' && github.event.inputs.publish }} # only publish from one OS with latest Java
+        id: versionDisplay
+        run: |
+          echo "versionDisplay=$(./gradlew -q printVersionDisplay)" >> "$GITHUB_OUTPUT"
 
       # windows throws an error if the second parameter for
       # echo is not set, which it will never be, because it's
       # only set for Linux
       - name: show version
         if: ${{ runner.os == 'Linux' && matrix.java == '17' && github.event.inputs.publish }} # only publish from one OS with latest Java
-        run: echo ${{ steps.getversion.outputs.version }}
+        run: echo ${{ steps.version.outputs.version }}
 
       - name: show changelog
         if: ${{ runner.os == 'Linux' && matrix.java == '17' && github.event.inputs.publish }} # only publish from one OS with latest Java
-        run: echo "${{ steps.getchangelog.outputs.changelog }}"
+        run: echo "${{ steps.changelog.outputs.changelog }}"
         continue-on-error: true
 
       - name: capture build artifacts
@@ -107,5 +109,6 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "LICENSE,build/libs/*.jar"
-          body: ${{ steps.getchangelog.outputs.changelog }}
-          tag: ${{ steps.getversion.outputs.version }}
+          body: ${{ steps.changelog.outputs.changelog }}
+          tag: ${{ steps.version.outputs.version }}
+          name: ${{ steps.versionDisplay.outputs.versionDisplay }}

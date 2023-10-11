@@ -6,12 +6,6 @@ ext /*-ra properties*/ {
 
 	properties.forEach ((k, v) -> set(k, v))
 
-	versionEnv = System.getenv("VERSION_NAME")
-
-	if (versionEnv != null) {
-		version = versionEnv
-	}
-
 	version_valid = versionValidForPublishing(version)
 	published_version_name = version_valid ? makeName(version, minecraft_version, display_name) : "INVALID"
 	changelog_text = getChangelog(file(changelog_file))
@@ -26,6 +20,14 @@ tasks.register("publishMod") {
 
 tasks.register("printChangelog") {
 	println(changelog_text)
+}
+
+tasks.register("printVersionDisplay") {
+	println(published_version_name)
+}
+
+tasks.register("printVersion") {
+	println(version)
 }
 
 static String makeName(String version, String minecraftVersion, String displayName) {
