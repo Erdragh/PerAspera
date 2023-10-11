@@ -61,11 +61,6 @@ jobs:
         run: |
           echo "version=$(.github/scripts/extract_version.sh)" >> "$GITHUB_OUTPUT"
 
-#      - name: initialize gradle
-#        env:
-#          VERSION_NAME: ${{ steps.getversion.outputs.version }}
-#        run: ./gradlew
-
       - name: gradle clean build
         env:
           VERSION_NAME: ${{ steps.getversion.outputs.version }}
