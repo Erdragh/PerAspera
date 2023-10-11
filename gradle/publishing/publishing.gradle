@@ -6,7 +6,7 @@ ext /*-ra properties*/ {
 
 	properties.forEach ((k, v) -> set(k, v))
 
-	versionEnv = System.getenv("VERSION_NUMBER")
+	versionEnv = System.getenv("VERSION_NAME")
 
 	if (versionEnv != null) {
 		version = versionEnv
