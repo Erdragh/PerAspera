@@ -77,9 +77,9 @@ jobs:
       # windows throws an error if the second parameter for
       # echo is not set, which it will never be, because it's
       # only set for Linux
-      - name: "version: ${{ steps.getversion.outputs.version }}"
+      - name: show version
         if: ${{ runner.os != 'Windows' }}
-        run: echo ":)"
+        run: echo ${{ steps.getversion.outputs.version }}
 
       - name: show changelog
         if: ${{ runner.os != 'Windows' }}
