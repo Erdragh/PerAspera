@@ -55,18 +55,14 @@ jobs:
         if: ${{ runner.os != 'Windows' }}
         run: chmod +x ./gradlew
 
-      - name: initialize gradle
-        run: ./gradlew
-
-      # the extracted version is only really relevant for
-      # the artifact names and for publishing, as such, it
-      # should (and can, because it's a bash script) only
-      # run on Linux
       - name: extract version
         if: ${{ runner.os != 'Windows' }}
         id: getversion
         run: |
           echo "version=$(.github/scripts/extract_version.sh)" >> "$GITHUB_OUTPUT"
+
+      - name: initialize gradle
+        run: ./gradlew
 
       - name: extract changelog
         if: ${{ runner.os != 'Windows' }}
