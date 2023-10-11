@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "per_aspera",
-  "version": "${version}",
+  "version": "${mod_version}",
   "name": "Per Aspera",
   "description": "Ad Astra addon which provides some bugfixes and improvements for the Create: Astral modpack",
   "authors": [
@@ -26,10 +26,10 @@
     "per_aspera.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.14",
+    "fabricloader": ">=${loader_version}",
     "fabric": "*",
     "minecraft": "1.18.2",
-    "ad_astra": ">=1.0.7"
+    "ad_astra": ">=1.0.9"
   },
   "accessWidener": "per_aspera.accesswidener"
 }

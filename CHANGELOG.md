@@ -1,4 +1,9 @@
 # indev
+
+# 1.4.1
+- Fix hover mode ascending on sneak+jump (Issue #13)
+
+# 1.4.0
 - Thruster Boots
 
 # 1.3.2
