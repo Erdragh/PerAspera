@@ -97,7 +97,8 @@ jar {
 
 machete {
     // Only optimize published releases
-    enabled = Boolean.getBoolean("PUBLISHING")
+    var publishingEnv = System.getenv("PUBLISHING")
+    enabled = publishingEnv != null && publishingEnv.toLowerCase() == "true"
 }
 
 // configure the maven publication
