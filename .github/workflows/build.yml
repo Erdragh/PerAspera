@@ -27,8 +27,8 @@ jobs:
         java: [
           17,    # Current Java LTS & minimum supported by Minecraft
         ]
-        # and run on both Linux and Windows
-        os: [ubuntu-22.04, windows-2022]
+        # and run on both Linux and macOS
+        os: [ubuntu-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
     env:
@@ -67,7 +67,7 @@ jobs:
         run: ./gradlew clean build
 
       - name: extract changelog
-        if: ${{ runner.os != 'Windows' }}
+        if: ${{ runner.os == 'Linux' && matrix.java == '17' && github.event.inputs.publish }} # only publish from one OS with latest Java
         id: getchangelog
         env:
           VERSION_NAME: ${{ steps.getversion.outputs.version }}
@@ -78,11 +78,11 @@ jobs:
       # echo is not set, which it will never be, because it's
       # only set for Linux
       - name: show version
-        if: ${{ runner.os != 'Windows' }}
+        if: ${{ runner.os == 'Linux' && matrix.java == '17' && github.event.inputs.publish }} # only publish from one OS with latest Java
         run: echo ${{ steps.getversion.outputs.version }}
 
       - name: show changelog
-        if: ${{ runner.os != 'Windows' }}
+        if: ${{ runner.os == 'Linux' && matrix.java == '17' && github.event.inputs.publish }} # only publish from one OS with latest Java
         run: echo "${{ steps.getchangelog.outputs.changelog }}"
         continue-on-error: true
 
