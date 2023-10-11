@@ -66,6 +66,11 @@ jobs:
 #          VERSION_NAME: ${{ steps.getversion.outputs.version }}
 #        run: ./gradlew
 
+      - name: gradle clean build
+        env:
+          VERSION_NAME: ${{ steps.getversion.outputs.version }}
+        run: ./gradlew clean build
+
       - name: extract changelog
         if: ${{ runner.os != 'Windows' }}
         id: getchangelog
@@ -84,11 +89,6 @@ jobs:
       - name: show extracted changelog
         if: ${{ runner.os != 'Windows' }}
         run: echo ${{ steps.getchangelog.outputs.changelog }}
-
-      - name: gradle clean build
-        env:
-          VERSION_NAME: ${{ steps.getversion.outputs.version }}
-        run: ./gradlew clean build
 
       - name: cache gradle files
         uses: actions/cache@v2
