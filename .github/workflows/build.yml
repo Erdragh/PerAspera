@@ -77,15 +77,16 @@ jobs:
       # windows throws an error if the second parameter for
       # echo is not set, which it will never be, because it's
       # only set for Linux
-      - name: show extracted version
+      - name: "version: ${{ steps.getversion.outputs.version }}"
         if: ${{ runner.os != 'Windows' }}
-        run: echo ${{ steps.getversion.outputs.version }}
+        run: echo ":)"
 
-      - name: show extracted changelog
+      - name: show changelog
         if: ${{ runner.os != 'Windows' }}
-        run: echo ${{ steps.getchangelog.outputs.changelog }}
+        run: echo "${{ steps.getchangelog.outputs.changelog }}"
+        continue-on-error: true
 
-#      - name: cache gradle files
+      #      - name: cache gradle files
 #        uses: actions/cache@v2
 #        with:
 #          path: |
