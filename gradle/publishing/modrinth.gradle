@@ -16,3 +16,7 @@ modrinth {
 		optional.project "rei"
 	}
 }
+
+tasks.named("modrinth") {
+	dependsOn(tasks.named("optimizeOutputsOfRemapJar"))
+}
