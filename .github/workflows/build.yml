@@ -16,6 +16,8 @@ on:
         required: true
   push:
     branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
 
 jobs:
   build:
