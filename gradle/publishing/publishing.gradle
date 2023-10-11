@@ -13,7 +13,7 @@ ext /*-ra properties*/ {
 	}
 
 	version_valid = versionValidForPublishing(version)
-	published_version_name = version_valid ? makeName(version, display_name) : "INVALID"
+	published_version_name = version_valid ? makeName(version, minecraft_version, display_name) : "INVALID"
 	changelog_text = getChangelog(file(changelog_file))
 }
 
@@ -28,12 +28,11 @@ tasks.register("printChangelog") {
 	println(changelog_text)
 }
 
-static String makeName(String version, String displayName) {
+static String makeName(String version, String minecraftVersion, String displayName) {
 	String projectVersion = "v" + version.split("-build")[0].replace("-", ".")
-	String mcVersion = version.split("\\+mc")[1]
 	String rawPatch = System.getenv("PATCH_NUMBER")
 	String patch = rawPatch === null || rawPatch.isEmpty() || rawPatch == "0" ? "" : "Patch $rawPatch"
-	return "$displayName $mcVersion $projectVersion $patch".trim()
+	return "$displayName $minecraftVersion $projectVersion $patch".trim()
 }
 
 static boolean versionValidForPublishing(String version) {
