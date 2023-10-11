@@ -68,20 +68,22 @@ public class ImprovedJetSuit extends JetSuit {
 
     @Override
     public void hover(PlayerEntity player, ItemStack stack) {
-        if (ModKeyBindings.jumpKeyDown(player)) {
+        var up = ModKeyBindings.jumpKeyDown(player) && !player.isInSneakingPose();
+        var down = !ModKeyBindings.jumpKeyDown(player) && player.isInSneakingPose();
+        double speed;
+        if (up) {
             super.hover(player, stack);
+            return;
+        } else if (down) {
+            speed = -AdAstra.CONFIG.spaceSuit.jetSuitUpwardsSpeed;
         } else {
-            double speed;
-            if (player.isInSneakingPose()) {
-                speed = -AdAstra.CONFIG.spaceSuit.jetSuitUpwardsSpeed;
-            } else {
-                speed = -player.getVelocity().getY() / HOVER_SINK_SPEED;
-            }
-            if (!player.isOnGround()) {
-                hover(player, stack, speed);
-            } else {
-                stack.getOrCreateNbt().putBoolean("spawn_particles", false);
-            }
+            speed = -player.getVelocity().getY() / HOVER_SINK_SPEED;
+        }
+
+        if (!player.isOnGround()) {
+            hover(player, stack, speed);
+        } else {
+            stack.getOrCreateNbt().putBoolean("spawn_particles", false);
         }
     }
 
