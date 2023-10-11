@@ -11,9 +11,8 @@ modrinth {
 	loaders = ["fabric"]
 	dependencies {
 		required.project "fabric-api"
-		required.project "fabric-language-kotlin"
+		required.project "ad-astra"
 		required.project "forge-config-api-port"
-		optional.project "rei"
 	}
 }
 
