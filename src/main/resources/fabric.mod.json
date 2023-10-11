@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "per_aspera",
   "version": "${mod_version}",
-  "name": "Per Aspera",
+  "name": "${display_name}",
   "description": "Ad Astra addon which provides some bugfixes and improvements for the Create: Astral modpack",
   "authors": [
     "Erdragh"
