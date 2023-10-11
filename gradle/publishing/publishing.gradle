@@ -4,8 +4,6 @@ ext /*-ra properties*/ {
 	Properties properties = new Properties()
 	properties.load(new FileInputStream(file("gradle/publishing/publishing.properties")))
 
-	depends = ((String) properties.get("dependencies"))?.split("; *")
-
 	properties.forEach ((k, v) -> set(k, v))
 
 	version_valid = versionValidForPublishing(version)
@@ -30,17 +28,6 @@ tasks.register("printVersionDisplay") {
 
 tasks.register("printVersion") {
 	println(version)
-}
-
-tasks.register("printDependencies") {
-	for (dependency in (depends as List<String>)) {
-		var optionalDep = dependency.endsWith("?")
-		if (optionalDep) {
-			println("optional: " + dependency);
-		} else {
-			println("required: " + dependency);
-		}
-	}
 }
 
 static String makeName(String version, String minecraftVersion, String displayName) {

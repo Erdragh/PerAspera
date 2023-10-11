@@ -10,14 +10,10 @@ modrinth {
 	gameVersions = [ minecraft_version ]
 	loaders = ["fabric"]
 	dependencies {
-		for (dependency in (depends as List<String>)) {
-			var optionalDep = dependency.endsWith("?")
-			if (optionalDep) {
-				optional.project(dependency.replace("?", ""))
-			} else {
-				required.project(dependency)
-			}
-		}
+		required.project "fabric-api"
+		required.project "fabric-language-kotlin"
+		required.project "forge-config-api-port"
+		optional.project "rei"
 	}
 }
 
