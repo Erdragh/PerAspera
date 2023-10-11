@@ -98,11 +98,9 @@ jobs:
           name: Artifacts
           path: build/libs/
 
-#      - name: publish to Modrinth and CurseForge
-#        env:
-#          VERSION_NAME: ${{ steps.getversion.outputs.version }}
-#        if: ${{ runner.os == 'Linux' && matrix.java == '17' && github.event.inputs.publish }} # only publish from one OS with latest Java
-#        run: ./gradlew publishMod
+      - name: publish to Modrinth and CurseForge
+        if: ${{ runner.os == 'Linux' && matrix.java == '17' && github.event.inputs.publish }} # only publish from one OS with latest Java
+        run: ./gradlew publishMod
 
       - name: create GitHub Release
         if: ${{ runner.os == 'Linux' && matrix.java == '17' && github.event.inputs.publish }} # only publish from one OS with latest Java
