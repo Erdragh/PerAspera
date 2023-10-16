@@ -1,0 +1,21 @@
+{
+  "per_aspera.msg.jet_suit_toggle": "Реактивний скафандр ",
+  "per_aspera.msg.thruster_boots_toggle": "Двигунні чоботи ",
+  "per_aspera.msg.jet_suit_toggle_hover": "Зависання реактивного скафандра ",
+  "per_aspera.msg.jet_suit_on": "увімк.",
+  "per_aspera.msg.jet_suit_off": "вимк.",
+  
+  "per_aspera.key_category": "Per Aspera",
+  "per_aspera.key.toggle_jet_suit": "Увімкнути/вимкнути реактивний скафандр чи двигунні чоботи",
+  "per_aspera.key.toggle_jet_suit_hover": "Увімкнути/вимкнути режим зависання",
+  
+  "item.per_aspera.jet_suit_flash_card": "Флеш-картка реактивного скафандра",
+  "item.per_aspera.thruster_boots": "Двигунні чоботи",
+  
+  "per_aspera.gui.jet_suit_customization.title": "Оберіть стиль частинок для вашого реактивного скафандра",
+  "per_aspera.gui.jet_suit_customization.soul_fire_flame": "Вогонь душ",
+  "per_aspera.gui.jet_suit_customization.end_rod": "Стрижень Енду",
+  "per_aspera.gui.jet_suit_customization.bubble": "Бульбашки",
+  
+  "per_aspera.hud.thruster_boots_charge": "Двигунні чоботи на %d%%"
+}
