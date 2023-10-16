@@ -1,5 +1,8 @@
 # indev
 
+# 1.4.2
+- Add uk_ua translation (#22 by @unroman)
+
 # 1.4.1
 - Fix hover mode ascending on sneak+jump (Issue #13)
 
